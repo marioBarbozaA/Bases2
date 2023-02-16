@@ -1,9 +1,9 @@
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
-dbo.Clientes.email)
-values ('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com')
+insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,dbo.Clientes.email)
+values 
+('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com'),
  ('Tiny','Jones','Mansfield',83365631, 'TinJones@gmail.com'),
  ('Evan','Reichenbach','Tran',89956157, 'EvaReichenbach@gmail.com'),
  ('Richard','Rush','Gartrell',82806739, 'RicRush@gmail.com'),
