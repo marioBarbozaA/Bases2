@@ -1,3 +1,4 @@
+
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
@@ -235,4 +236,322 @@ VALUES
 ('Fresas', 1, 3000, 200, 10, 'Fresas rojitas', 'imagen13.png'),
 ('Zanahoria',  1, 2400, 200, 20, 'Zanahoria Prodigio', 'imagen14.png'),
 ('Limon',  2, 1400, 400, 40, 'Limon Increible', 'imagen15.png');
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+USE [Ferianueva]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertarProductoXOrden]    Script Date: 15/2/2023 20:35:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+Create PROCEDURE [dbo].[InsertarProductoXOrden]
+    @idProducto int,
+    @idOrden int,
+    @cantidad float
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Insertar datos en la tabla ProductoXOrden
+    INSERT INTO ProductoXOrden (idProducto, idOrden, cantidad, precio)
+    VALUES (@idProducto, @idOrden, @cantidad, (SELECT @cantidad * (select Productos.precioVenta from productos where Productos.idProducto = @idProducto)));
+    
+    -- Actualizar el totalPrice y pesoTotal de la orden
+    UPDATE Ordenes
+    SET totalPrice = (SELECT SUM(ProductoXOrden.precio) FROM ProductoXOrden WHERE idOrden = @idOrden),
+        pesoTotal = (SELECT SUM(cantidad) FROM ProductoXOrden po INNER JOIN Productos p ON po.idProducto = p.idProducto WHERE idOrden = @idOrden)
+    WHERE ordenId = @idOrden;
+END;
+GO
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+EXEC InsertarProductoXOrden @idProducto = 1, @idOrden = 1,    @cantidad = 10;
+EXEC InsertarProductoXOrden @idProducto = 2, @idOrden = 1, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto = 8, @idOrden = 1, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 2, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 2, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 2, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 2, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 2, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 3, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 4, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 4, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 4, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 4, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 4, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 5, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 6, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 6, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 6, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 7, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 7, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 7, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 7, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 8, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 8, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 8, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 8, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 8, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 8, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 8, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 9, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 10, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 10, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 10, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 10, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 10, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 10, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 10, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 10, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 11, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 11, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 11, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 11, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 12, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 13, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 13, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 13, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 13, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 13, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 13, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 13, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 13, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 14, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 14, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 14, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 14, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 14, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 15, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 15, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 15, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 16, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 16, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 16, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 17, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 17, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 17, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 17, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 17, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 17, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 17, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 17, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 18, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 18, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 18, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 18, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 18, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 18, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 18, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 19, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 19, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 19, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 20, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 20, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 21, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 21, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 21, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 22, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 22, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 23, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 23, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 24, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 24, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 24, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 25, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 25, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 26, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 27, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 27, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 27, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 27, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 28, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 28, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 28, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 28, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 28, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 29, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 29, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 29, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 29, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 29, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 29, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 29, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 30, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 31, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 31, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 31, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 31, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 31, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 31, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 32, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 32, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 32, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 32, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 33, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 33, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 33, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 33, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 34, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 35, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 35, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 35, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 35, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 35, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 35, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 36, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 36, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 36, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 36, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 36, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 36, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 37, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 37, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 38, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 38, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 39, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 39, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 39, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 39, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 39, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 39, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 40, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 40, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 40, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 40, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 41, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 41, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 41, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 41, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 41, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 42, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 42, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 42, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 42, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 42, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 43, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 43, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 43, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =14, @idOrden = 44, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 45, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 45, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 45, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 45, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 45, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 46, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 46, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 46, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 46, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =13, @idOrden = 46, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 46, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =11, @idOrden = 46, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 47, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 47, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 47, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 47, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =15, @idOrden = 47, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =2, @idOrden = 47, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 47, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 48, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =7, @idOrden = 48, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =1, @idOrden = 48, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =9, @idOrden = 48, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 48, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 48, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 49, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =12, @idOrden = 49, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =6, @idOrden = 49, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =4, @idOrden = 50, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =5, @idOrden = 50, @cantidad = 3;
+EXEC InsertarProductoXOrden @idProducto =3, @idOrden = 50, @cantidad = 1;
+EXEC InsertarProductoXOrden @idProducto =8, @idOrden = 50, @cantidad = 2;
+EXEC InsertarProductoXOrden @idProducto =10, @idOrden = 50, @cantidad = 2;
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+insert into dbo.Facturas (dbo.Facturas.fecha, dbo.Facturas.Total, dbo.Facturas.OrdenId)
+values (GETDATE(), 0, 1),
+(GETDATE(), 0, 2), 
+(GETDATE(), 0, 3), 
+(GETDATE(), 0, 4), 
+(GETDATE(), 0, 5), 
+(GETDATE(), 0, 6), 
+(GETDATE(), 0, 7), 
+(GETDATE(), 0, 8), 
+(GETDATE(), 0, 9), 
+(GETDATE(), 0, 10),
+(GETDATE(), 0, 11),
+(GETDATE(), 0, 12),
+(GETDATE(), 0, 13),
+(GETDATE(), 0, 14),
+(GETDATE(), 0, 15),
+(GETDATE(), 0, 16),
+(GETDATE(), 0, 17),
+(GETDATE(), 0, 18),
+(GETDATE(), 0, 19),
+(GETDATE(), 0, 20),
+(GETDATE(), 0, 21),
+(GETDATE(), 0, 22),
+(GETDATE(), 0, 23),
+(GETDATE(), 0, 24),
+(GETDATE(), 0, 25),
+(GETDATE(), 0, 26),
+(GETDATE(), 0, 27),
+(GETDATE(), 0, 28),
+(GETDATE(), 0, 29),
+(GETDATE(), 0, 30),
+(GETDATE(), 0, 31),
+(GETDATE(), 0, 32),
+(GETDATE(), 0, 33),
+(GETDATE(), 0, 34),
+(GETDATE(), 0, 35),
+(GETDATE(), 0, 36),
+(GETDATE(), 0, 37),
+(GETDATE(), 0, 38),
+(GETDATE(), 0, 39),
+(GETDATE(), 0, 40),
+(GETDATE(), 0, 41),
+(GETDATE(), 0, 42),
+(GETDATE(), 0, 43),
+(GETDATE(), 0, 44),
+(GETDATE(), 0, 45),
+(GETDATE(), 0, 46),
+(GETDATE(), 0, 47),
+(GETDATE(), 0, 48),
+(GETDATE(), 0, 49),
+(GETDATE(), 0, 50);
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+USE [Ferianueva]
+GO
+/****** Object:  StoredProcedure [dbo].[ActualizarFacturas]    Script Date: 15/2/2023 20:35:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ActualizarFactura]
+AS
+BEGIN
+    SET NOCOUNT ON;
+    update dbo.Facturas 
+	set dbo.facturas.Total = (SELECT Ordenes.totalPrice from Ordenes where Facturas.OrdenId = Ordenes.ordenId),
+	dbo.facturas.fecha = (SELECT Ordenes.postime from Ordenes where Facturas.OrdenId = Ordenes.ordenId)
+	where 1=1;
+END;
+GO
+/**/
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+Exec ActualizarFactura;
 
