@@ -8,4 +8,5 @@ SELECT * FROM [dbo].[distritos];
 SELECT * FROM [dbo].[Direcciones];
 SELECT * FROM [dbo].[DireccionXCliente];
 SELECT * FROM [dbo].[Productos];
-SELECT * FROM [dbo].[Unidades];
+SELECT * FROM [dbo].[Unidades];	
+SELECT * FROM [DBO].[ORDENES];
