@@ -27,6 +27,16 @@ INNER JOIN Ferianueva.dbo.Facturas f ON (f.OrdenId = o.ordenId)
 WHERE DATEDIFF(day, f.Fecha, GETDATE()) <= 15
 GROUP BY p.idProducto,p.Nombre
 ORDER BY TotalVendido DESC;
+
+
+select p.Nombre, pxo.Cantidad FROM Ferianueva.dbo.Ordenes o
+INNER JOIN Ferianueva.dbo.ProductoXOrden pxo ON (o.ordenId = pxo.idOrden)
+INNER JOIN Ferianueva.dbo.Productos p ON (pxo.idProducto = p.idProducto)
+INNER JOIN Ferianueva.dbo.Facturas f ON (f.OrdenId = o.ordenId)
+WHERE DATEDIFF(day, f.Fecha, GETDATE()) <= 15 and p.idProducto=4;
+
+
+select * from Productos;
 -- ----------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------
 -- ----------------------------------------------------------------------------------
