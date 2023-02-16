@@ -1,11 +1,8 @@
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-/*insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
-dbo.Clientes.email)
-values ('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com'),
-insert into Ferianueva.dbo.Clientes(nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,dbo.Clientes.email)
-values 
+insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
+dbo.Clientes.email) 
 ('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com'),
  ('Tiny','Jones','Mansfield',83365631, 'TinJones@gmail.com'),
  ('Evan','Reichenbach','Tran',89956157, 'EvaReichenbach@gmail.com'),
@@ -27,112 +24,8 @@ values
  ('Kevin','Kent','Black',89180931, 'KevKent@gmail.com'),
  ('Cheryl','Wyman','Mcfarland',85096644, 'CheWyman@gmail.com');
  
- -- Insert data into the Tipo Empleado
-
  -- ---------------------------------------------------------------
- --						Estado orden
- -- ---------------------------------------------------------------
- /*insert into dbo.EstadoOrden (dbo.EstadoOrden.descripcion)
-values ('En proceso'), ('Por entregar'), ('Entregada')*/
-
- -- ---------------------------------------------------------------
- --						 orden
- -- ---------------------------------------------------------------
- /*
-insert into Ferianueva.dbo.Ordenes (FeriaNueva.dbo.Ordenes.postime, FeriaNueva.dbo.Ordenes.totalPrice, 
-FeriaNueva.dbo.Ordenes.pesoTotal, FeriaNueva.dbo.Ordenes.clienteId, FeriaNueva.dbo.Ordenes.estadoOrdenId, 
-FeriaNueva.dbo.Ordenes.direccionId)
-values (SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,1,3, 1),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,1,3, 1),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,2,3, 2),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,2,3, 2),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,3,3, 3),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,3,3, 3),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,4,3, 4),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,4,3, 4),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,6,3, 6),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,6,3, 6),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,8,3, 8),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,9,3, 9),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,9,3, 9),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,10,3, 10),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,11,3, 11),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,12,3, 12),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,15,3, 15),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,16,3, 16),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,16,3, 16),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,17,3, 17),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,17,3, 17),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,19,3, 19),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,19,3, 19),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20),
-(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20);*/
-
- -- ---------------------------------------------------------------
- --						 productoXOrden
- -- ---------------------------------------------------------------
- INSERT INTO [Ferianueva].[dbo].[TipoEmpleado] ([salario], [descripcion])
-VALUES 
-   (10000, 'Facturador'),
-   (20000,'Restuarador'),
-   (15000,'Chofer');
-
- -- Insert data into the Empleados
-
-INSERT INTO [Ferianueva].[dbo].[Empleados] 
-([nombre], [apellido1], [apellido2], [FechaContrato], [celular], [tipoEmpleado])
-VALUES 
-('Juan', 'P�rez', 'G�mez', '2022-01-01', 5551234, 1),
-('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 5555678, 2),
-('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 5559012, 1),
-('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 5553456, 2),
-('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 5557890, 1);
- 
- -- Insert data into the Unidades
-INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
-VALUES 
-   ('Kilogramo'),
-   ('Litro'),
-   ('Unidad'),
-   ('Metro');
-
--- Insert data into the Productos table
-INSERT INTO [Ferianueva].[dbo].[Productos] 
-([Nombre], [idUnidad], [precioVenta], [max], [min], [descripcion], [imagen])
-VALUES 
-('Tomates',1, 1000, 100, 10, 'Tomate delicioso', 'imagen1.png'),
-('Banano', 1, 2000, 200, 20, 'Banano grande', 'imagen2.png'),
-('Leche',  2, 1400,70, 30, 'Leche Sabrosa', 'imagen3.png'),
-( 'Aguacate',  1, 4000, 100, 10, 'Aguacate Dulce', 'imagen4.png'),
-('Mamon chino', 1, 2000, 50, 10, 'Mamon Chino Rico', 'imagen5.png'),
-('Naranja',  1, 3000, 300, 30, 'Naranja Jugosa', 'imagen6.png'),
-('Mango',  1, 3600, 100, 10, 'Mango Exitoso', 'imagen7.png'),
-('Pipa',  1, 500, 200, 20, 'Pipa Refrescante', 'imagen8.png'),
-('Platano',  1, 3000, 100, 30, 'Buen Platano', 'imagen9.png'),
-('Yuca',  1, 1000, 100, 10, 'Yuca linda', 'imagen10.png'),
-('Papa',  1, 2000, 200, 20, 'Papa Excelente', 'imagen11.png'),
-('Chayote',  1, 2200, 100, 30, 'Chayotazo', 'imagen12.png'),
-('Fresas', 1, 3000, 200, 10, 'Fresas rojitas', 'imagen13.png'),
-('Zanahoria',  1, 2400, 200, 20, 'Zanahoria Prodigio', 'imagen14.png'),
-('Limon',  2, 1400, 400, 40, 'Limon Increible', 'imagen15.png');
-
--- Insert data into the Provincias
+ -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
 ([nombre])
 VALUES 
@@ -222,3 +115,114 @@ VALUES
 (18,18),
 (19,19),
 (20,20);
+
+ -- ----------------------------------------------------------------
+
+
+ -- ---------------------------------------------------------------
+ --						Estado orden
+ -- ---------------------------------------------------------------
+ insert into dbo.EstadoOrden (dbo.EstadoOrden.descripcion)
+values ('En proceso'), ('Por entregar'), ('Entregada')
+
+ -- ---------------------------------------------------------------
+ --						 orden
+ -- ---------------------------------------------------------------
+ 
+insert into Ferianueva.dbo.Ordenes (FeriaNueva.dbo.Ordenes.postime, FeriaNueva.dbo.Ordenes.totalPrice, 
+FeriaNueva.dbo.Ordenes.pesoTotal, FeriaNueva.dbo.Ordenes.clienteId, FeriaNueva.dbo.Ordenes.estadoOrdenId, 
+FeriaNueva.dbo.Ordenes.direccionId)
+values (SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,1,3, 1),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,1,3, 1),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,2,3, 2),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,2,3, 2),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,3,3, 3),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,3,3, 3),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,4,3, 4),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,4,3, 4),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,5,3, 5),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,6,3, 6),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,6,3, 6),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,7,3, 7),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,8,3, 8),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,9,3, 9),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,9,3, 9),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,10,3, 10),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,11,3, 11),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,12,3, 12),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,13,3, 13),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,14,3, 14),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,15,3, 15),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,16,3, 16),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,16,3, 16),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,17,3, 17),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,17,3, 17),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,18,3, 18),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,19,3, 19),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,19,3, 19),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20),
+(SELECT DATEADD(dd, RAND()*27*-2, GETDATE()), 0, 0,20,3, 20);
+
+ -- ---------------------------------------------------------------
+ --						 productoXOrden
+ -- ---------------------------------------------------------------
+
+ -- ---------------------------------------------------------------
+ -- Insert data into the Tipo Empleado
+ -- ---------------------------------------------------------------
+ INSERT INTO [Ferianueva].[dbo].[TipoEmpleado] ([salario], [descripcion])
+VALUES 
+   (10000, 'Facturador'),
+   (20000,'Restuarador'),
+   (15000,'Chofer');
+
+ -- Insert data into the Empleados
+
+INSERT INTO [Ferianueva].[dbo].[Empleados] 
+([nombre], [apellido1], [apellido2], [FechaContrato], [celular], [tipoEmpleado])
+VALUES 
+('Juan', 'P�rez', 'G�mez', '2022-01-01', 5551234, 1),
+('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 5555678, 2),
+('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 5559012, 1),
+('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 5553456, 2),
+('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 5557890, 1);
+ 
+ -- Insert data into the Unidades
+INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
+VALUES 
+   ('Kilogramo'),
+   ('Litro'),
+   ('Unidad'),
+   ('Metro');
+
+-- Insert data into the Productos table
+INSERT INTO [Ferianueva].[dbo].[Productos] 
+([Nombre], [idUnidad], [precioVenta], [max], [min], [descripcion], [imagen])
+VALUES 
+('Tomates',1, 1000, 100, 10, 'Tomate delicioso', 'imagen1.png'),
+('Banano', 1, 2000, 200, 20, 'Banano grande', 'imagen2.png'),
+('Leche',  2, 1400,70, 30, 'Leche Sabrosa', 'imagen3.png'),
+( 'Aguacate',  1, 4000, 100, 10, 'Aguacate Dulce', 'imagen4.png'),
+('Mamon chino', 1, 2000, 50, 10, 'Mamon Chino Rico', 'imagen5.png'),
+('Naranja',  1, 3000, 300, 30, 'Naranja Jugosa', 'imagen6.png'),
+('Mango',  1, 3600, 100, 10, 'Mango Exitoso', 'imagen7.png'),
+('Pipa',  1, 500, 200, 20, 'Pipa Refrescante', 'imagen8.png'),
+('Platano',  1, 3000, 100, 30, 'Buen Platano', 'imagen9.png'),
+('Yuca',  1, 1000, 100, 10, 'Yuca linda', 'imagen10.png'),
+('Papa',  1, 2000, 200, 20, 'Papa Excelente', 'imagen11.png'),
+('Chayote',  1, 2200, 100, 30, 'Chayotazo', 'imagen12.png'),
+('Fresas', 1, 3000, 200, 10, 'Fresas rojitas', 'imagen13.png'),
+('Zanahoria',  1, 2400, 200, 20, 'Zanahoria Prodigio', 'imagen14.png'),
+('Limon',  2, 1400, 400, 40, 'Limon Increible', 'imagen15.png');
+
