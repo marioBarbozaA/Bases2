@@ -1,7 +1,7 @@
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,dbo.Clientes.email)
+insert into Ferianueva.dbo.Clientes(nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,dbo.Clientes.email)
 values 
 ('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com'),
  ('Tiny','Jones','Mansfield',83365631, 'TinJones@gmail.com'),
@@ -23,8 +23,10 @@ values
  ('Joan','Jones','Madden',84914047, 'JoaJones@gmail.com'),
  ('Kevin','Kent','Black',89180931, 'KevKent@gmail.com'),
  ('Cheryl','Wyman','Mcfarland',85096644, 'CheWyman@gmail.com');
+ 
  -- Insert data into the Tipo Empleado
- INSERT INTO [dbo].[TipoEmpleado] ([salario], [descripcion])
+
+ INSERT INTO [Ferianueva].[dbo].[TipoEmpleado] ([salario], [descripcion])
 VALUES 
    (10000, 'Facturador'),
    (20000,'Restuarador'),
@@ -32,7 +34,7 @@ VALUES
 
  -- Insert data into the Empleados
 
-INSERT INTO [dbo].[Empleados] 
+INSERT INTO [Ferianueva].[dbo].[Empleados] 
 ([nombre], [apellido1], [apellido2], [FechaContrato], [celular], [tipoEmpleado])
 VALUES 
 ('Juan', 'Pérez', 'Gómez', '2022-01-01', 5551234, 1),
@@ -42,37 +44,35 @@ VALUES
 ('Carlos', 'Jiménez', 'Díaz', '2022-05-01', 5557890, 1);
  
  -- Insert data into the Unidades
- INSERT INTO [dbo].[Unidades] ([Nombre])
+INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
 VALUES 
    ('Kilogramo'),
    ('Litro'),
    ('Unidad'),
    ('Metro');
 
-
-
 -- Insert data into the Productos table
-INSERT INTO [dbo].[Productos] 
+INSERT INTO [Ferianueva].[dbo].[Productos] 
 ([Nombre], [idUnidad], [precioVenta], [max], [min], [descripcion], [imagen])
 VALUES 
-('Tomates', 500, 1, 1000, 100, 10, 'Tomate delicioso', 'imagen1.png'),
-('Banano', 1000, 1, 2000, 200, 20, 'Banano grande', 'imagen2.png'),
-('Leche', 700, 2, 1400,70, 30, 'Leche Sabrosa', 'imagen3.png'),
-( 'Aguacate', 2000, 1, 4000, 100, 10, 'Aguacate Dulce', 'imagen4.png'),
-('Mamon chino', 1000, 1, 2000, 50, 10, 'Mamon Chino Rico', 'imagen5.png'),
-('Naranja', 1500, 1, 3000, 300, 30, 'Naranja Jugosa', 'imagen6.png'),
-('Mango', 1800, 1, 3600, 100, 10, 'Mango Exitoso', 'imagen7.png'),
-('Pipa', 100, 1, 500, 200, 20, 'Pipa Refrescante', 'imagen8.png'),
-('Platano', 1500, 1, 3000, 100, 30, 'Buen Platano', 'imagen9.png'),
-('Yuca', 500, 1, 1000, 100, 10, 'Yuca linda', 'imagen10.png'),
-('Papa', 1000, 1, 2000, 200, 20, 'Papa Excelente', 'imagen11.png'),
-('Chayote', 1100, 1, 2200, 100, 30, 'Chayotazo', 'imagen12.png'),
-('Fresas', 1500, 1, 3000, 200, 10, 'Fresas rojitas', 'imagen13.png'),
-('Zanahoria', 1200, 1, 2400, 200, 20, 'Zanahoria Prodigio', 'imagen14.png'),
-('Limon', 700, 2, 1400, 400, 40, 'Limon Increible', 'imagen15.png');
+('Tomates',1, 1000, 100, 10, 'Tomate delicioso', 'imagen1.png'),
+('Banano', 1, 2000, 200, 20, 'Banano grande', 'imagen2.png'),
+('Leche',  2, 1400,70, 30, 'Leche Sabrosa', 'imagen3.png'),
+( 'Aguacate',  1, 4000, 100, 10, 'Aguacate Dulce', 'imagen4.png'),
+('Mamon chino', 1, 2000, 50, 10, 'Mamon Chino Rico', 'imagen5.png'),
+('Naranja',  1, 3000, 300, 30, 'Naranja Jugosa', 'imagen6.png'),
+('Mango',  1, 3600, 100, 10, 'Mango Exitoso', 'imagen7.png'),
+('Pipa',  1, 500, 200, 20, 'Pipa Refrescante', 'imagen8.png'),
+('Platano',  1, 3000, 100, 30, 'Buen Platano', 'imagen9.png'),
+('Yuca',  1, 1000, 100, 10, 'Yuca linda', 'imagen10.png'),
+('Papa',  1, 2000, 200, 20, 'Papa Excelente', 'imagen11.png'),
+('Chayote',  1, 2200, 100, 30, 'Chayotazo', 'imagen12.png'),
+('Fresas', 1, 3000, 200, 10, 'Fresas rojitas', 'imagen13.png'),
+('Zanahoria',  1, 2400, 200, 20, 'Zanahoria Prodigio', 'imagen14.png'),
+('Limon',  2, 1400, 400, 40, 'Limon Increible', 'imagen15.png');
 
 -- Insert data into the Provincias
-INSERT INTO [dbo].[Provincias] 
+INSERT INTO [Ferianueva].[dbo].[Provincias] 
 ([nombre])
 VALUES 
 ('San José'),
@@ -84,7 +84,7 @@ VALUES
 ('Limon');
 
 -- Insert data into the Cantones
-INSERT INTO [dbo].[cantones] 
+INSERT INTO [Ferianueva].[dbo].[cantones] 
 ([idProvincia],[nombre])
 VALUES 
 (4,'Paraiso'),
@@ -96,7 +96,7 @@ VALUES
 (1,'Zapote');
 
 -- Insert data into the Distritos
-INSERT INTO [dbo].[distritos] 
+INSERT INTO [Ferianueva].[dbo].[distritos] 
 ([idCanton],[nombre])
 VALUES 
 (4,'San Juan'),
@@ -108,7 +108,7 @@ VALUES
 (1,'Plaza del Sol');
 
 -- Insert data into the Direccion
-INSERT INTO [dbo].[Direcciones] 
+INSERT INTO [Ferianueva].[dbo].[Direcciones] 
 ([idDistrito],[descripcion],[localizacion])
 VALUES 
 (1,'Al apar de Panaderia bollo',geography::STGeomFromText('POINT(-84.0516022 9.9363268)', 4326)),
@@ -138,7 +138,7 @@ VALUES
 (5, 'Museo del Oro San Jose', geography::STGeomFromText('POINT(-84.0765114 9.9351754)', 4326));-- 25
 
 -- Insert data into the DireccionXClientes
-INSERT INTO [dbo].[DireccionXCliente]
+INSERT INTO [Ferianueva].[dbo].[DireccionXCliente]
 ([idCliente],[idDireccion])
 VALUES 
 (1,1),
@@ -161,4 +161,3 @@ VALUES
 (18,18),
 (19,19),
 (20,20);
-
