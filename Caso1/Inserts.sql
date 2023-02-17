@@ -800,3 +800,59 @@ VALUES
 (13,1,13,25),
 (14,1,14,25),
 (15,1,15,25);
+ --
+
+ SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:    <Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:  <Description,,>
+-- =============================================
+ CREATE PROCEDURE [dbo].[AddDetalleRuta]
+(
+    @horaLlegada datetime,
+    @recolectado bit,
+    @idRuta int,
+    @idPedido int
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO DetalleRuta (horaLlegada, recolectado, idRuta, idPedido)
+    VALUES (@horaLlegada, @recolectado, @idRuta, @idPedido)
+
+    -- If recolectado is true (1), update Lotes table with information from the related Pedido
+    IF (@recolectado = 1)
+    BEGIN
+        DECLARE @idProducto int, @cantidadProducto float, @idProveedor int, @precioUnitario money
+
+        SELECT @idProducto = idProducto, @cantidadProducto = cantidadProducto, @idProveedor = idProveedor, @precioUnitario = precioUnitario
+        FROM Pedidos
+        WHERE idPedido = @idPedido
+
+        INSERT INTO Lotes (idProducto, peso, idProveedor, precioUnitario, descripcion)
+        VALUES (@idProducto, @cantidadProducto, @idProveedor, @precioUnitario, 'Lote generado desde detalleRuta')
+    END
+END
+go
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 1;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 3;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 5;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 6;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 7;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 8;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 9;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 10;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 11;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 12;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 13;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 14;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 15;
+ 
+ 
