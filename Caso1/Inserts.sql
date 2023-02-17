@@ -62,6 +62,34 @@ VALUES
 
 
 
+-- ------------------------------------------------------------------------
+/*									CLIENTES							*/
+-- ------------------------------------------------------------------------
+insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
+dbo.Clientes.email) values 
+('Grace','Starcher','Parker' ),
+ ('Tiny','Jones','Mansfield'),
+ ('Evan','Reichenbach','Tran' ),
+ ('Richard','Rush','Gartrell'),
+ ('Lawrence','Bernhart','Settles'),
+ ('Joan','Gosselin','Griffin'),
+ ('Jason','Hoag','Daley' ),
+ ('David','Tung','Sharp'),
+ ('Christina','Sabino','Chatfield'),
+ ('Jeffrey','Guerrero','Patillo'),
+ ('Raymond','Foust','Nguyen'),
+ ('Deangelo','Considine','Gordon'),
+ ('Terry','Arnold','Mathew'),
+ ('Nina','Westerman','Banda'),
+ ('Ashley','Mckinley','Priolo'),
+ ('Joya','Hathaway','Smith'),
+ ('Lorraine','Bullock','Keeler'),
+ ('Joan','Jones','Madden'),
+ ('Kevin','Kent','Black'),
+ ('Cheryl','Wyman','Mcfarland');
+ 
+
+ 
 
 -- ------------------------------------------------------------------------
 /*									ContactInfoByClient					*/
@@ -110,32 +138,6 @@ VALUES
 (20, 39),
 (20, 40);
 
--- ------------------------------------------------------------------------
-/*									CLIENTES							*/
--- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
-dbo.Clientes.email) values 
-('Grace','Starcher','Parker' ),
- ('Tiny','Jones','Mansfield'),
- ('Evan','Reichenbach','Tran' ),
- ('Richard','Rush','Gartrell'),
- ('Lawrence','Bernhart','Settles'),
- ('Joan','Gosselin','Griffin'),
- ('Jason','Hoag','Daley' ),
- ('David','Tung','Sharp'),
- ('Christina','Sabino','Chatfield'),
- ('Jeffrey','Guerrero','Patillo'),
- ('Raymond','Foust','Nguyen'),
- ('Deangelo','Considine','Gordon'),
- ('Terry','Arnold','Mathew'),
- ('Nina','Westerman','Banda'),
- ('Ashley','Mckinley','Priolo'),
- ('Joya','Hathaway','Smith'),
- ('Lorraine','Bullock','Keeler'),
- ('Joan','Jones','Madden'),
- ('Kevin','Kent','Black'),
- ('Cheryl','Wyman','Mcfarland');
- 
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
@@ -319,6 +321,18 @@ VALUES
 ('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 2),
 ('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 1);
  
+ -- ------------------------------------------------------------------------
+/*									ContactInfoByClient					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[ContactInfoXCliente] 
+([empleadoId],[ContactInfoId])
+VALUES 
+(1,41),
+(2,42),
+(3,43),
+(4,44),
+(5,45),
+
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
 VALUES 
