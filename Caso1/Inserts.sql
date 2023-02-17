@@ -1,30 +1,142 @@
+-- ------------------------------------------------------------------------
+/*									TypeContact           			*/
+-- ------------------------------------------------------------------------
+
+INSERT INTO [Ferianueva].[dbo].[tipoContactInfo] 
+([Descripcion])
+VALUES 
+('Phone'),
+('Email');
+
+-- ------------------------------------------------------------------------
+/*									ContactInfo     					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[ContactInfo] 
+([tipoId],[contacto])
+VALUES 
+(1,'80080268'),
+(2,'GraStarcher@gmail.com'),
+(1,'83365631'),
+(2, 'TinJones@gmail.com'),
+(1,'89956157'),
+(2,'EvaReichenbach@gmail.com'),
+(1,'82806739'),
+(2,'RicRush@gmail.com'),
+(1, '83714516'),
+(2, 'LawBernhart@gmail.com'),
+(1, '82688393'),
+(2, 'JoaGosselin@gmail.com'),
+(1, '81370699'),
+(2, 'JasHoag@gmail.com'),
+(1, '86617568'),
+(2, 'DavTung@gmail.com'),
+(1, '89874539'),
+(2, 'ChrSabino@gmail.com'),
+(1, '89874539'),
+(2, 'JefGuerrero@gmail.com'),
+(1, '82385652'),
+(2, 'RayFoust@gmail.com'),
+(1, '86830732'),
+(2, 'DeaConsidine@gmail.com'),
+(1, '89605250'),
+(2,  'TerArnold@gmail.com'),
+(1, '86079107'),
+(2,  'NinWesterman@gmail.com'),
+(1, '85371669'),
+(2, 'AshMckinley@gmail.com'),
+(1, '81029918'),
+(2, 'JoyHathaway@gmail.com'),
+(1, '85133678'),
+(2, 'LorBullock@gmail.com'),
+(1, '84914047'),
+(2,  'JoaJones@gmail.com'),
+(1, '89180931'),
+(2,  'KevKent@gmail.com'),
+(1, '85096644'),
+(2,  'CheWyman@gmail.com'),
+(1,5551234),
+(1, 5555678),
+(1, 5559012),
+(1, 5553456),
+(1, 5557890);
+
+
 
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
-dbo.Clientes.email) values 
-('Grace','Starcher','Parker',80080268, 'GraStarcher@gmail.com'),
- ('Tiny','Jones','Mansfield',83365631, 'TinJones@gmail.com'),
- ('Evan','Reichenbach','Tran',89956157, 'EvaReichenbach@gmail.com'),
- ('Richard','Rush','Gartrell',82806739, 'RicRush@gmail.com'),
- ('Lawrence','Bernhart','Settles',83714516, 'LawBernhart@gmail.com'),
- ('Joan','Gosselin','Griffin',82688393, 'JoaGosselin@gmail.com'),
- ('Jason','Hoag','Daley',81370699, 'JasHoag@gmail.com'),
- ('David','Tung','Sharp',86617568, 'DavTung@gmail.com'),
- ('Christina','Sabino','Chatfield',89874539, 'ChrSabino@gmail.com'),
- ('Jeffrey','Guerrero','Patillo',82979275, 'JefGuerrero@gmail.com'),
- ('Raymond','Foust','Nguyen',82385652, 'RayFoust@gmail.com'),
- ('Deangelo','Considine','Gordon',86830732, 'DeaConsidine@gmail.com'),
- ('Terry','Arnold','Mathew',89605250, 'TerArnold@gmail.com'),
- ('Nina','Westerman','Banda',86079107, 'NinWesterman@gmail.com'),
- ('Ashley','Mckinley','Priolo',85371669, 'AshMckinley@gmail.com'),
- ('Joya','Hathaway','Smith',81029918, 'JoyHathaway@gmail.com'),
- ('Lorraine','Bullock','Keeler',85133678, 'LorBullock@gmail.com'),
- ('Joan','Jones','Madden',84914047, 'JoaJones@gmail.com'),
- ('Kevin','Kent','Black',89180931, 'KevKent@gmail.com'),
- ('Cheryl','Wyman','Mcfarland',85096644, 'CheWyman@gmail.com');
+insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2) values 
+('Grace','Starcher','Parker' ),
+ ('Tiny','Jones','Mansfield'),
+ ('Evan','Reichenbach','Tran' ),
+ ('Richard','Rush','Gartrell'),
+ ('Lawrence','Bernhart','Settles'),
+ ('Joan','Gosselin','Griffin'),
+ ('Jason','Hoag','Daley' ),
+ ('David','Tung','Sharp'),
+ ('Christina','Sabino','Chatfield'),
+ ('Jeffrey','Guerrero','Patillo'),
+ ('Raymond','Foust','Nguyen'),
+ ('Deangelo','Considine','Gordon'),
+ ('Terry','Arnold','Mathew'),
+ ('Nina','Westerman','Banda'),
+ ('Ashley','Mckinley','Priolo'),
+ ('Joya','Hathaway','Smith'),
+ ('Lorraine','Bullock','Keeler'),
+ ('Joan','Jones','Madden'),
+ ('Kevin','Kent','Black'),
+ ('Cheryl','Wyman','Mcfarland');
  
+
+ 
+
+-- ------------------------------------------------------------------------
+/*									ContactInfoByClient					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[contactoInfoXCliente] 
+([idCliente],[idContactoInfo])
+VALUES 
+(1,1),
+(1,2),
+(2,3),
+(2,4),
+(3,5),
+(3,6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20),
+(11, 21),
+(11, 22),
+(12, 23),
+(12, 24),
+(13, 25),
+(13, 26),
+(14, 27),
+(14, 28),
+(15, 29),
+(15, 30),
+(16, 31),
+(16, 32),
+(17, 33),
+(17, 34),
+(18, 35),
+(18, 36),
+(19, 37),
+(19, 38),
+(20, 39),
+(20, 40);
+
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
@@ -199,16 +311,27 @@ VALUES
    (15000,'Chofer');
 
  -- Insert data into the Empleados
-
 INSERT INTO [Ferianueva].[dbo].[Empleados] 
-([nombre], [apellido1], [apellido2], [FechaContrato], [celular], [tipoEmpleado])
+([nombre], [apellido1], [apellido2], [FechaContrato], [tipoEmpleado])
 VALUES 
-('Juan', 'P�rez', 'G�mez', '2022-01-01', 5551234, 1),
-('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 5555678, 2),
-('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 5559012, 1),
-('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 5553456, 2),
-('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 5557890, 1);
+('Juan', 'P�rez', 'G�mez', '2022-01-01', 1),
+('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 2),
+('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 1),
+('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 2),
+('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 1);
  
+ -- ------------------------------------------------------------------------
+/*									ContactInfoByClient					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[contactoInfoXEmpleado] 
+([idEmpleado],[idContacto])
+VALUES 
+(1,41),
+(2,42),
+(3,43),
+(4,44),
+(5,45);
+
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
 VALUES 
