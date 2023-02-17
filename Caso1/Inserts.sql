@@ -310,7 +310,7 @@ values
  -- ---------------------------------------------------------------
  INSERT INTO [Ferianueva].[dbo].[TipoEmpleado] ([salario], [descripcion])
 VALUES 
-   (10000, 'Facturador'),
+   (10000, 'Bodeguero'),
    (20000,'Restuarador'),
    (15000,'Chofer');
 
@@ -322,7 +322,7 @@ VALUES
 ('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 2),
 ('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 1),
 ('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 2),
-('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 1);
+('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 3);
  
  -- ------------------------------------------------------------------------
 /*									ContactInfoByClient					*/
@@ -743,3 +743,35 @@ VALUES
 (5,13,40,GETDATE(),1500,60000),
 (5,14,40,GETDATE(),1200,48000),
 (5,15,40,GETDATE(),700,28000);
+
+-- transporte
+INSERT INTO [Ferianueva].[dbo].[Transporte]
+([Capacidad])
+VALUES 
+(10000);
+
+-- rutas
+INSERT INTO [Ferianueva].[dbo].[Rutas]
+([Fecha],[idTransporte],[idChofer])
+VALUES 
+(GETDATE(),1,5);
+
+-- rutasXPedido
+INSERT INTO [Ferianueva].[dbo].[rutaXPedido]
+([idPedido],[idRuta],[orden],[idDireccion])
+VALUES 
+(1,1,1,21),
+(2,1,2,21),
+(3,1,3,21),
+(4,1,4,22),
+(5,1,5,22),
+(6,1,6,22),
+(7,1,7,23),
+(8,1,8,23),
+(9,1,9,23),
+(10,1,10,24),
+(11,1,11,24),
+(12,1,12,24),
+(13,1,13,25),
+(14,1,14,25),
+(15,1,15,25);
