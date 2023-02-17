@@ -5,8 +5,8 @@
 INSERT INTO [Ferianueva].[dbo].[ContactInfo] 
 ([tipoContactoId],[contacto])
 VALUES 
-('Phone')
-('Email')
+('Phone'),
+('Email');
 
 -- ------------------------------------------------------------------------
 /*									ContactInfo     					*/
@@ -53,8 +53,12 @@ VALUES
 (1, '89180931'),
 (2,  'KevKent@gmail.com'),
 (1, '85096644'),
-(2,  'CheWyman@gmail.com');
-
+(2,  'CheWyman@gmail.com'),
+(1,5551234),
+(1, 5555678),
+(1, 5559012),
+(1, 5553456),
+(1, 5557890);
 
 
 
@@ -62,7 +66,49 @@ VALUES
 -- ------------------------------------------------------------------------
 /*									ContactInfoByClient					*/
 -- ------------------------------------------------------------------------
-
+INSERT INTO [Ferianueva].[dbo].[ContactInfoXCliente] 
+([clienteId],[ContactInfoId])
+VALUES 
+(1,1),
+(1,2),
+(2,3),
+(2,4),
+(3,5),
+(3,6),
+(4, 7),
+(4, 8),
+(5, 9),
+(5, 10),
+(6, 11),
+(6, 12),
+(7, 13),
+(7, 14),
+(8, 15),
+(8, 16),
+(9, 17),
+(9, 18),
+(10, 19),
+(10, 20),
+(11, 21),
+(11, 22),
+(12, 23),
+(12, 24),
+(13, 25),
+(13, 26),
+(14, 27),
+(14, 28),
+(15, 29),
+(15, 30),
+(16, 31),
+(16, 32),
+(17, 33),
+(17, 34),
+(18, 35),
+(18, 36),
+(19, 37),
+(19, 38),
+(20, 39),
+(20, 40);
 
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
@@ -264,15 +310,14 @@ VALUES
    (15000,'Chofer');
 
  -- Insert data into the Empleados
-
 INSERT INTO [Ferianueva].[dbo].[Empleados] 
-([nombre], [apellido1], [apellido2], [FechaContrato], [celular], [tipoEmpleado])
+([nombre], [apellido1], [apellido2], [FechaContrato], [tipoEmpleado])
 VALUES 
-('Juan', 'P�rez', 'G�mez', '2022-01-01', 5551234, 1),
-('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 5555678, 2),
-('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 5559012, 1),
-('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 5553456, 2),
-('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 5557890, 1);
+('Juan', 'P�rez', 'G�mez', '2022-01-01', 1),
+('Mar�a', 'L�pez', 'Fern�ndez', '2022-02-01', 2),
+('Pedro', 'Garc�a', 'S�nchez', '2022-03-01', 1),
+('Ana', 'Mart�nez', 'Guti�rrez', '2022-04-01', 2),
+('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 1);
  
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
