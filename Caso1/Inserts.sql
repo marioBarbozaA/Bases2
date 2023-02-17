@@ -677,4 +677,40 @@ GO
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 Exec ActualizarFactura;
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+insert into dbo.Proveedores (dbo.Proveedores.nombre, dbo.Proveedores.descripcion)
+values ('Apple', 'Filipenses 4:13'),
+('Microsoft', 'Isaías 40:29'),     
+('Amazon', 'Efesios 6:10'),        
+('Google', 'Isaías 40:29-31'),     
+('Samsung', 'Salmos 46:1'),        
+('Disney', 'Nehemías 8:10'),       
+('Nike', 'Salmos 28:7-8'),
+('Louis Vuitton', 'Salmos 118:14');
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+insert into dbo.tipoProveedor (dbo.tipoProveedor.descripcion) 
+values ('Verduras'), ('Frutas'), ('Lacteos');
 
+insert into dbo.tipoProveedorXProveedor(dbo.tipoProveedorXProveedor.idProveedor, dbo.tipoProveedorXProveedor.idTipoProveedor)
+values (1, 1),
+(1, 2),
+(2, 1),
+(2, 2),
+(3, 1),
+(3, 2),
+(4, 1),
+(4, 2),
+(5, 1),
+(5, 2),
+(6, 1),
+(6, 2),
+(7, 1),
+(7, 2);
+
+select Proveedores.Nombre, tipoProveedor.Descripcion from Proveedores
+inner join tipoProveedorXProveedor on tipoProveedorXProveedor.idProveedor = Proveedores.idProveedor
+inner join tipoProveedor on tipoProveedor.idTipo = tipoProveedorXProveedor.idTipoProveedor
