@@ -724,3 +724,22 @@ values (1, 1),
 (4, 2),
 (5, 1),
 (5, 2);
+
+INSERT INTO [Ferianueva].[dbo].[Pedidos]
+([idProveedor],[idProducto],[cantidadProducto],[FechaEntrega],[precioUnitario],[total])
+VALUES 
+(1,1,40,GETDATE(),500,20000),
+(1,2,40,GETDATE(),1000,40000),
+(1,3,40,GETDATE(),700,28000),
+(2,4,40,GETDATE(),2000,80000),
+(2,5,40,GETDATE(),1000,40000),
+(2,6,40,GETDATE(),1500,60000),
+(3,7,40,GETDATE(),1800,72000),
+(3,8,40,GETDATE(),250,10000),
+(3,9,40,GETDATE(),1500,60000),
+(4,10,40,GETDATE(),500,20000),
+(4,11,40,GETDATE(),1000,40000),
+(4,12,40,GETDATE(),1100,44000),
+(5,13,40,GETDATE(),1500,60000),
+(5,14,40,GETDATE(),1200,48000),
+(5,15,40,GETDATE(),700,28000);
