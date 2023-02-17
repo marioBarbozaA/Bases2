@@ -65,11 +65,11 @@ VALUES
 (1, '55534564'),
 (1, '55578905');
 
-
+select * from [Ferianueva].[dbo].[ContactInfo] ;
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2) values 
+insert into [Ferianueva].[dbo].[Clientes] (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2) values 
 ('Grace','Starcher','Parker' ),
  ('Tiny','Jones','Mansfield'),
  ('Evan','Reichenbach','Tran' ),
@@ -239,7 +239,7 @@ VALUES
  -- ---------------------------------------------------------------
  --						Estado orden
  -- ---------------------------------------------------------------
- insert into dbo.EstadoOrdenID (dbo.EstadoOrdenId.descripcion)
+ insert into [Ferianueva].[dbo].[EstadoOrdenID] (dbo.EstadoOrdenId.descripcion)
 values ('En proceso'), ('Por entregar'), ('Entregada')
 
  -- ---------------------------------------------------------------
@@ -393,7 +393,6 @@ BEGIN
     WHERE ordenId = @idOrden;
 END;
 GO
-
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
@@ -659,24 +658,7 @@ values (GETDATE(), 0, 1),
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
-USE [Ferianueva]
-GO
-/****** Object:  StoredProcedure [dbo].[ActualizarFacturas]    Script Date: 15/2/2023 20:35:06 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[ActualizarFactura]
-AS
-BEGIN
-    SET NOCOUNT ON;
-    update dbo.Facturas 
-	set dbo.facturas.Total = (SELECT Ordenes.totalPrice from Ordenes where Facturas.OrdenId = Ordenes.ordenId),
-	dbo.facturas.fecha = (SELECT Ordenes.postime from Ordenes where Facturas.OrdenId = Ordenes.ordenId)
-	where 1=1;
-END;
-GO
-/**/
+
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
@@ -688,7 +670,8 @@ Exec ActualizarFactura;
 
 
 
-insert into dbo.Proveedores (dbo.Proveedores.nombre, dbo.Proveedores.descripcion)
+insert into [Ferianueva].[dbo].[Proveedores] 
+([Ferianueva].[dbo].[Proveedores].[Nombre], [Ferianueva].[dbo].[Proveedores].[Descripcion])
 values 
 ('Apple', 'Filipenses 4:13'),
 ('Microsoft', 'Isaías 40:29'),     
@@ -716,6 +699,7 @@ values ('Verduras'), ('Frutas'), ('Lacteos');
 insert into dbo.tipoProveedorXProveedor(dbo.tipoProveedorXProveedor.idProveedor, dbo.tipoProveedorXProveedor.idTipoProveedor)
 values (1, 1),
 (1, 2),
+(1, 3),
 (2, 1),
 (2, 2),
 (3, 1),
@@ -724,6 +708,49 @@ values (1, 1),
 (4, 2),
 (5, 1),
 (5, 2);
+
+
+-- ---------------------------------------------------------------------------
+--								PROVEEDORxPRODUCTO
+-- ---------------------------------------------------------------------------
+
+insert into [Ferianueva].[dbo].[productoXProveedor]
+([Ferianueva].[dbo].[productoXProveedor].[idProducto], [Ferianueva].[dbo].[productoXProveedor].[idProveedor])
+values 
+(1,1),
+(2,1),
+(3,1),
+(4,2),
+(5,2),
+(6,2),
+(7,3),
+(8,3),
+(9,3),
+(10,4),
+(11,4),
+(12,4),
+(13,5),
+(14,5),
+(15,5);
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+
+-- ---------------------------------------------------------------------------
+--								DIRECCIONxPROVEEDOR
+-- ---------------------------------------------------------------------------
+insert into [Ferianueva].[dbo].[direccionXProveedor] 
+([Ferianueva].[dbo].[direccionXProveedor].[idDireccion], [Ferianueva].[dbo].[direccionXProveedor].[idProveedor])
+values (21, 1),
+(22, 2),
+(23, 3),
+(24, 4),
+(25, 5);
+
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 INSERT INTO [Ferianueva].[dbo].[Pedidos]
 ([idProveedor],[idProducto],[cantidadProducto],[FechaEntrega],[precioUnitario],[total])
