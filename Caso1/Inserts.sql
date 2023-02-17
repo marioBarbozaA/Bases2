@@ -136,7 +136,7 @@ VALUES
 (19, 38),
 (20, 39),
 (20, 40);
-
+-- ojito
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
