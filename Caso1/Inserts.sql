@@ -54,12 +54,16 @@ VALUES
 (2,  'KevKent@gmail.com'),
 (1, '85096644'),
 (2,  'CheWyman@gmail.com'),
-(1,5551234),
-(1, 5555678),
-(1, 5559012),
-(1, 5553456),
-(1, 5557890);
-
+(1,'5551234'),
+(1, '5555678'),
+(1, '5559012'),
+(1, '5553456'),
+(1, '5557890'),
+(1,'55512341'),
+(1, '55556782'),
+(1, '55590123'),
+(1, '55534564'),
+(1, '55578905');
 
 
 -- ------------------------------------------------------------------------
@@ -136,7 +140,7 @@ VALUES
 (19, 38),
 (20, 39),
 (20, 40);
--- ojito
+
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
@@ -680,15 +684,29 @@ Exec ActualizarFactura;
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
+
+
+
+
 insert into dbo.Proveedores (dbo.Proveedores.nombre, dbo.Proveedores.descripcion)
-values ('Apple', 'Filipenses 4:13'),
+values 
+('Apple', 'Filipenses 4:13'),
 ('Microsoft', 'Isaías 40:29'),     
 ('Amazon', 'Efesios 6:10'),        
 ('Google', 'Isaías 40:29-31'),     
-('Samsung', 'Salmos 46:1'),        
-('Disney', 'Nehemías 8:10'),       
-('Nike', 'Salmos 28:7-8'),
-('Louis Vuitton', 'Salmos 118:14');
+('Samsung', 'Salmos 46:1');     
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[contactoInfoXProveedor]
+([idProveedor],[idContactoInfo])
+VALUES 
+(1,46),
+(2,47),
+(3,48),
+(4,49),
+(5,50);
+
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
@@ -705,12 +723,4 @@ values (1, 1),
 (4, 1),
 (4, 2),
 (5, 1),
-(5, 2),
-(6, 1),
-(6, 2),
-(7, 1),
-(7, 2);
-
-select Proveedores.Nombre, tipoProveedor.Descripcion from Proveedores
-inner join tipoProveedorXProveedor on tipoProveedorXProveedor.idProveedor = Proveedores.idProveedor
-inner join tipoProveedor on tipoProveedor.idTipo = tipoProveedorXProveedor.idTipoProveedor
+(5, 2);
