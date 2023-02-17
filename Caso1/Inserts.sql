@@ -2,8 +2,8 @@
 /*									TypeContact           			*/
 -- ------------------------------------------------------------------------
 
-INSERT INTO [Ferianueva].[dbo].[ContactInfo] 
-([tipoContactoId],[contacto])
+INSERT INTO [Ferianueva].[dbo].[tipoContactInfo] 
+([Descripcion])
 VALUES 
 ('Phone'),
 ('Email');
@@ -12,7 +12,7 @@ VALUES
 /*									ContactInfo     					*/
 -- ------------------------------------------------------------------------
 INSERT INTO [Ferianueva].[dbo].[ContactInfo] 
-([tipoContactoId],[contacto])
+([tipoId],[contacto])
 VALUES 
 (1,'80080268'),
 (2,'GraStarcher@gmail.com'),
@@ -65,8 +65,7 @@ VALUES
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
-insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2, dbo.Clientes.celular,
-dbo.Clientes.email) values 
+insert into dbo.Clientes (dbo.Clientes.nombre, dbo.Clientes.apellido1, dbo.Clientes.apellido2) values 
 ('Grace','Starcher','Parker' ),
  ('Tiny','Jones','Mansfield'),
  ('Evan','Reichenbach','Tran' ),
@@ -94,8 +93,8 @@ dbo.Clientes.email) values
 -- ------------------------------------------------------------------------
 /*									ContactInfoByClient					*/
 -- ------------------------------------------------------------------------
-INSERT INTO [Ferianueva].[dbo].[ContactInfoXCliente] 
-([clienteId],[ContactInfoId])
+INSERT INTO [Ferianueva].[dbo].[contactoInfoXCliente] 
+([idCliente],[idContactoInfo])
 VALUES 
 (1,1),
 (1,2),
@@ -324,14 +323,14 @@ VALUES
  -- ------------------------------------------------------------------------
 /*									ContactInfoByClient					*/
 -- ------------------------------------------------------------------------
-INSERT INTO [Ferianueva].[dbo].[ContactInfoXCliente] 
-([empleadoId],[ContactInfoId])
+INSERT INTO [Ferianueva].[dbo].[contactoInfoXEmpleado] 
+([idEmpleado],[idContacto])
 VALUES 
 (1,41),
 (2,42),
 (3,43),
 (4,44),
-(5,45),
+(5,45);
 
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
