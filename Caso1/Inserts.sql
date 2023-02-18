@@ -865,7 +865,7 @@ go
 -- --------------------------------------------------------------------------
 -- --------------------------------------------------------------------------
 -- --------------------------------------------------------------------------
-
+go
  CREATE PROCEDURE sp_InsertarRestauracionXInventario 
     @idInventario INT, 
     @idRestauracion INT, 
@@ -947,22 +947,6 @@ BEGIN
         THROW;
     END CATCH
 END
-
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 1;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 2;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 3;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 4;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 5;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 6;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 7;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 8;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 9;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 10;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 11;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 12;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 13;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 14;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 15;
 
  -- ---------------------------------------------------------------------------
 --								TipoACCION
