@@ -64,8 +64,6 @@ VALUES
 (1, '55590123'),
 (1, '55534564'),
 (1, '55578905');
-
-
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
@@ -950,3 +948,47 @@ BEGIN
     END CATCH
 END
 
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 1;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 3;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 5;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 6;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 7;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 8;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 9;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 10;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 11;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 12;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 13;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 14;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 15;
+
+ -- ---------------------------------------------------------------------------
+--								TipoACCION
+-- ---------------------------------------------------------------------------
+INSERT INTO [Ferianueva].dbo.tipoAccion([Nombre])
+VALUES 
+('Restaurada'),
+('Desechable');
+-- ---------------------------------------------------------------------------
+--								Inventario
+-- ---------------------------------------------------------------------------
+
+INSERT INTO Inventarios (idTipoAccion, Cantidad, nuevaExpiracion, idRegistrador, idProducto)
+VALUES 
+(1, 0, GETDATE(), 1, 1),
+(1, 0, GETDATE(), 1, 2),
+(1, 0, GETDATE(), 1, 3),
+(1, 0, GETDATE(), 1, 4),
+(1, 0, GETDATE(), 1, 5),
+(1, 0, GETDATE(), 1, 6),
+(1, 0, GETDATE(), 1, 7),
+(1, 0, GETDATE(), 1, 8),
+(1, 0, GETDATE(), 1, 9),
+(1, 0, GETDATE(), 1, 10),
+(1, 0, GETDATE(), 1, 11),
+(1, 0, GETDATE(), 1, 12),
+(1, 0, GETDATE(), 1, 13),
+(1, 0, GETDATE(), 1, 14),
+(1, 0, GETDATE(), 1, 15);
