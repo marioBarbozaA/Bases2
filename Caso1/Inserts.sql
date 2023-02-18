@@ -947,7 +947,7 @@ BEGIN
         THROW;
     END CATCH
 END
-
+GO
  -- ---------------------------------------------------------------------------
 --								TipoACCION
 -- ---------------------------------------------------------------------------
@@ -955,6 +955,7 @@ INSERT INTO [Ferianueva].dbo.tipoAccion([Nombre])
 VALUES 
 ('Restaurada'),
 ('Desechable');
+
 -- ---------------------------------------------------------------------------
 --								Inventario
 -- ---------------------------------------------------------------------------
@@ -977,7 +978,7 @@ VALUES
 (1, 0, GETDATE(), 1, 14),
 (1, 0, GETDATE(), 1, 15);
 
-SELECT * FROM Empleados
+
 
 EXEC sp_InsertarRestauracionXInventario @idInventario=1 , @idRestauracion=1 , @idRegistrador =1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=2 , @idRestauracion=2 , @idRegistrador =1;
@@ -994,5 +995,3 @@ EXEC sp_InsertarRestauracionXInventario @idInventario=12, @idRestauracion=12, @i
 EXEC sp_InsertarRestauracionXInventario @idInventario=13, @idRestauracion=13, @idRegistrador=1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=14, @idRestauracion=14, @idRegistrador=1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=15, @idRestauracion=15, @idRegistrador=1;
-
-
