@@ -813,12 +813,15 @@ GO
 -- Create date: <Create Date,,>
 -- Description:  <Description,,>
 -- =============================================
- CREATE PROCEDURE [dbo].[AddDetalleRuta]
+ alter PROCEDURE [dbo].[AddDetalleRuta]
 (
     @horaLlegada datetime,
     @recolectado bit,
     @idRuta int,
-    @idPedido int
+    @idPedido int,
+	@nuevaExp datetime,
+	@desecho float,
+	@idRestaurador int
 )
 AS
 BEGIN
@@ -838,23 +841,112 @@ BEGIN
 
         INSERT INTO Lotes (idProducto, peso, idProveedor, precioUnitario, descripcion)
         VALUES (@idProducto, @cantidadProducto, @idProveedor, @precioUnitario, 'Lote generado desde detalleRuta')
+
+		INSERT INTO Restauraciones (idLote, PesoDesechado, NuevaExpiracion, idRestaurador)
+		VALUES ((SELECT COUNT(*) from Lotes), @desecho, @nuevaExp, @idRestaurador)
+
     END
 END
 go
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 1;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 2;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 12:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 3;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 4;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 5;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 13:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 6;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 7;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 8;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 14:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 9;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 10;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 11;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 15:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 12;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 13;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 14;
- EXEC AddDetalleRuta @horaLlegada='2023-02-17 16:30:00'  , @recolectado = 1, @idRuta = 1, @idPedido = 15;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 12:30:00' , @recolectado= 1, @idRuta= 1, @idPedido= 1, @desecho=2, @nuevaExp ='2023-02-2 10:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 12:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 2, @desecho=4, @nuevaExp ='2023-02-2 11:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 12:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 3, @desecho=6, @nuevaExp ='2023-02-2 11:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 13:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 4, @desecho=8, @nuevaExp ='2023-02-2 12:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 13:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 5, @desecho=1, @nuevaExp ='2023-02-2 12:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 13:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 6, @desecho=3, @nuevaExp ='2023-02-2 13:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 14:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 7, @desecho=5, @nuevaExp ='2023-02-2 13:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 14:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 8, @desecho=7, @nuevaExp ='2023-02-2 14:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 14:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 9, @desecho=9, @nuevaExp ='2023-02-2 14:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 15:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 10, @desecho=2, @nuevaExp ='2023-02-2 15:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 15:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 11, @desecho=4, @nuevaExp ='2023-02-2 15:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 15:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 12, @desecho=6, @nuevaExp ='2023-02-2 16:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 16:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 13, @desecho=8, @nuevaExp ='2023-02-2 16:30:00' , @idRestaurador=2;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 16:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 14, @desecho=1, @nuevaExp ='2023-02-2 17:00:00' , @idRestaurador=4;
+ EXEC AddDetalleRuta @horaLlegada='2023-02-1 16:30:00', @recolectado= 1, @idRuta= 1, @idPedido= 15, @desecho=3, @nuevaExp ='2023-02-2 17:30:00' , @idRestaurador=2;
  
- 
+-- --------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
+-- --------------------------------------------------------------------------
+
+ CREATE PROCEDURE sp_InsertarRestauracionXInventario 
+    @idInventario INT, 
+    @idRestauracion INT, 
+    @idRegistrador INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Declarar variables locales
+    DECLARE @idProductoRestauracion INT;
+    DECLARE @idProductoInventario INT;
+  DECLARE @totalRestauracion INT = (SELECT COUNT(*) FROM Restauraciones);
+  DECLARE @totalInventario INT = (SELECT COUNT(*) FROM Inventarios);
+    DECLARE @pesoRestauracion FLOAT;
+    DECLARE @nuevaExpiracionRestauracion DATE;
+    DECLARE @pesoDesechadoRestauracion FLOAT;
+    DECLARE @pesoInventario FLOAT;
+    DECLARE @nuevaExpiracionInventario DATE;
+  DECLARE @InicieTransaccion BIT;
+    DECLARE @idTipoAccion INT = 1; -- Actualizar inventario
+    
+    -- Validar que el producto de la restauración sea el mismo que el del inventario
+    SELECT @idProductoRestauracion = L.idProducto, 
+           @pesoRestauracion = L.peso,
+           @nuevaExpiracionRestauracion = R.NuevaExpiracion,
+           @pesoDesechadoRestauracion = R.PesoDesechado
+    FROM Restauraciones R
+    INNER JOIN Lotes L ON L.idLote = R.idLote
+    WHERE R.idRestauracion = @idRestauracion;
+
+    SELECT @idProductoInventario = idProducto, 
+           @pesoInventario = Cantidad,
+           @nuevaExpiracionInventario = nuevaExpiracion
+    FROM Inventarios
+    WHERE idInventario = @idInventario;
+
+    IF @idProductoRestauracion <> @idProductoInventario
+    BEGIN
+    
+        RAISERROR('El producto de la restauración debe ser el mismo que el del inventario.', 16, 1);
+        RETURN;
+    END
+    IF ((@idRestauracion <= 0   OR  @idRestauracion > @totalRestauracion) 
+     OR  ( @idInventario <= 0 or @idInventario > @totalInventario))
+    BEGIN
+    
+        RAISERROR('Debe existir en la base el inevntario o esa restauracion.', 16, 1);
+        RETURN;
+     END
+     
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Insertar datos en la tabla RestauracionXInventario
+        INSERT INTO RestauracionXInventario (idInventario, idRestauración, Fecha)
+        VALUES (@idInventario, @idRestauracion, GETDATE());
+
+        -- Actualizar datos en la tabla Inventarios
+        UPDATE Inventarios 
+        SET Cantidad = @pesoInventario + @pesoRestauracion - @pesoDesechadoRestauracion,
+            nuevaExpiracion = @nuevaExpiracionRestauracion,
+            idTipoAccion = @idTipoAccion
+        WHERE idInventario = @idInventario 
+              AND idProducto = @idProductoRestauracion;
+
+        -- Verificar que el restaurador sea bodeguero 1
+        IF NOT EXISTS (SELECT * FROM Empleados WHERE idEmpleado = @idRegistrador AND tipoEmpleado = 1)
+        BEGIN
+            RAISERROR('El Bodeguero debe existir.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        COMMIT TRANSACTION;
+
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+
