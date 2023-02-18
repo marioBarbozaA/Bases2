@@ -920,7 +920,7 @@ BEGIN
         BEGIN TRANSACTION;
 
         -- Insertar datos en la tabla RestauracionXInventario
-        INSERT INTO RestauracionXInventario (idInventario, idRestauración, Fecha)
+        INSERT INTO RestauracionXInventario (idInventario, idRestauración, FechaUpdate)
         VALUES (@idInventario, @idRestauracion, GETDATE());
 
         -- Actualizar datos en la tabla Inventarios
@@ -976,3 +976,23 @@ VALUES
 (1, 0, GETDATE(), 1, 13),
 (1, 0, GETDATE(), 1, 14),
 (1, 0, GETDATE(), 1, 15);
+
+SELECT * FROM Empleados
+
+EXEC sp_InsertarRestauracionXInventario @idInventario=1 , @idRestauracion=1 , @idRegistrador =1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=2 , @idRestauracion=2 , @idRegistrador =1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=3 , @idRestauracion=3 , @idRegistrador =1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=4, @idRestauracion=4, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=5, @idRestauracion=5, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=6, @idRestauracion=6, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=7, @idRestauracion=7, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=8, @idRestauracion=8, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=9, @idRestauracion=9, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=10, @idRestauracion=10, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=11, @idRestauracion=11, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=12, @idRestauracion=12, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=13, @idRestauracion=13, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=14, @idRestauracion=14, @idRegistrador=1;
+EXEC sp_InsertarRestauracionXInventario @idInventario=15, @idRestauracion=15, @idRegistrador=1;
+
+
