@@ -1045,4 +1045,8 @@ BEGIN
 END
 go
 
-exec UpdateInventariosCantidad 1, -5;
+
+INSERT INTO [Ferianueva].[dbo].[DevolucionCausas] 
+([descripcion])
+VALUES ('Producto equivocado'), ('Cantidad equivocada'), ('Mala atencion'), ('Producto en mal estado'),
+('Producto triste');
