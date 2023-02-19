@@ -801,7 +801,7 @@ VALUES
 (4,1);
 
 -- RutasXOrden
-select * from Ordenes;
+
 INSERT INTO [Ferianueva].[dbo].[rutaXOrden]
 ([idRuta],[ordenId],[ordenLlegada])
 VALUES 
