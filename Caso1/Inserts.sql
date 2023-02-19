@@ -1046,7 +1046,11 @@ END
 go
 
 
+
 INSERT INTO [Ferianueva].[dbo].[DevolucionCausas] 
 ([descripcion])
 VALUES ('Producto equivocado'), ('Cantidad equivocada'), ('Mala atencion'), ('Producto en mal estado'),
 ('Producto triste');
+
+INSERT INTO [Ferianueva].[dbo].[Devoluciones] 
+()
