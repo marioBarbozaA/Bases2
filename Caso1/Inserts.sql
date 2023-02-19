@@ -912,7 +912,7 @@ BEGIN
      OR  ( @idInventario <= 0 or @idInventario > @totalInventario))
     BEGIN
     
-        RAISERROR('Debe existir en la base el inevntario o esa restauracion.', 16, 1);
+        RAISERROR('Debe existir en la base el inventario o esa restauracion.', 16, 1);
         RETURN;
      END
      
@@ -978,8 +978,6 @@ VALUES
 (1, 0, GETDATE(), 1, 14),
 (1, 0, GETDATE(), 1, 15);
 
-
-
 EXEC sp_InsertarRestauracionXInventario @idInventario=1 , @idRestauracion=1 , @idRegistrador =1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=2 , @idRestauracion=2 , @idRegistrador =1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=3 , @idRestauracion=3 , @idRegistrador =1;
@@ -995,3 +993,56 @@ EXEC sp_InsertarRestauracionXInventario @idInventario=12, @idRestauracion=12, @i
 EXEC sp_InsertarRestauracionXInventario @idInventario=13, @idRestauracion=13, @idRegistrador=1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=14, @idRestauracion=14, @idRegistrador=1;
 EXEC sp_InsertarRestauracionXInventario @idInventario=15, @idRestauracion=15, @idRegistrador=1;
+
+go
+CREATE PROCEDURE [dbo].[UpdateInventariosCantidad]
+    @idProducto int,
+    @cantidad float
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @err int;
+    DECLARE @tranStarted bit;
+	DECLARE @postTotal float;
+	IF NOT (@idProducto>0 and (select count(*) from Productos where Productos.idProducto = @idProducto) = 1)
+		begin
+			RAISERROR('El producto especificado no existe', 16, 1);
+			RETURN;
+		end
+	SET @postTotal = (select sum(@cantidad+Inventarios.Cantidad) from Inventarios where Inventarios.idProducto = @idProducto);
+	IF NOT ((SELECT (SELECT Inventarios.Cantidad from Inventarios where Inventarios.idProducto = @idProducto)-@cantidad) >= 0)
+		BEGIN
+			RAISERROR('No hay suficiente stock para el pedido', 16, 1);
+			RETURN;
+		END
+    SET @tranStarted = 0;
+    BEGIN TRY
+        IF @@TRANCOUNT = 0
+        BEGIN
+            SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+            BEGIN TRANSACTION;
+				UPDATE [dbo].[Inventarios]
+				SET [Cantidad] = @postTotal
+				WHERE [Inventarios].[idProducto] = @idProducto
+				SET @tranStarted = 1;
+			END
+        IF @tranStarted = 1
+        BEGIN
+            COMMIT TRANSACTION;
+        END
+    END TRY
+    BEGIN CATCH
+        SET @err = @@ERROR;
+
+        IF @tranStarted = 1
+        BEGIN
+            ROLLBACK TRANSACTION;
+        END
+
+        RAISERROR('Error updating Inventarios: %d', 16, 1, @err);
+    END CATCH
+END
+go
+
+exec UpdateInventariosCantidad 1, -5;
