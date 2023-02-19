@@ -248,56 +248,56 @@ insert into Ferianueva.dbo.Ordenes (FeriaNueva.dbo.Ordenes.postime, FeriaNueva.d
 FeriaNueva.dbo.Ordenes.pesoTotal, FeriaNueva.dbo.Ordenes.clienteId, FeriaNueva.dbo.Ordenes.estadoOrdenId, 
 FeriaNueva.dbo.Ordenes.direccionId)
 values 
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,1,3, 1),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,1,3, 1),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,1,3, 1),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,2,3, 2),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,3,3, 3),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,3,3, 3),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,3,3, 3),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,4,3, 4),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,4,3, 4),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,4,3, 4),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,5,3, 5),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,6,3, 6),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,6,3, 6),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,6,3, 6),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,7,3, 7),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,7,3, 7),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,8,3, 8),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,8,3, 8),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,8,3, 8),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,9,3, 9),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,9,3, 9),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,9,3, 9),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,10,3, 10),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,10,3, 10),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,10,3, 10),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,11,3, 11),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,11,3, 11),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,11,3, 11),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,12,3, 12),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,12,3, 12),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,12,3, 12),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,13,3, 13),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,13,3, 13),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,13,3, 13),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,14,3, 14),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,14,3, 14),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,15,3, 15),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,15,3, 15),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,15,3, 15),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,16,3, 16),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,16,3, 16),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,16,3, 16),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,17,3, 17),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,17,3, 17),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,17,3, 17),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,18,3, 18),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,18,3, 18),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,19,3, 19),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,19,3, 19),
-((SELECT DATEADD(dd, RAND()*27*-2, GETDATE())), 0, 0,20,3, 20);
+(GETDATE(), 0, 0,1,3, 1),
+(GETDATE(), 0, 0,1,3, 1),
+(GETDATE(), 0, 0,1,3, 1),
+(GETDATE(), 0, 0,2,3, 2),
+(GETDATE(), 0, 0,3,3, 3),
+(GETDATE(), 0, 0,3,3, 3),
+(GETDATE(), 0, 0,3,3, 3),
+(GETDATE(), 0, 0,4,3, 4),
+(GETDATE(), 0, 0,4,3, 4),
+(GETDATE(), 0, 0,4,3, 4),
+(GETDATE(), 0, 0,5,3, 5),
+(GETDATE(), 0, 0,6,3, 6),
+(GETDATE(), 0, 0,6,3, 6),
+(GETDATE(), 0, 0,6,3, 6),
+(GETDATE(), 0, 0,7,3, 7),
+(GETDATE(), 0, 0,7,3, 7),
+(GETDATE(), 0, 0,8,3, 8),
+(GETDATE(), 0, 0,8,3, 8),
+(GETDATE(), 0, 0,8,3, 8),
+(GETDATE(), 0, 0,9,3, 9),
+(GETDATE(), 0, 0,9,3, 9),
+(GETDATE(), 0, 0,9,3, 9),
+(GETDATE(), 0, 0,10,3, 10),
+(GETDATE(), 0, 0,10,3, 10),
+(GETDATE(), 0, 0,10,3, 10),
+(GETDATE(), 0, 0,11,3, 11),
+(GETDATE(), 0, 0,11,3, 11),
+(GETDATE(), 0, 0,11,3, 11),
+(GETDATE(), 0, 0,12,3, 12),
+(GETDATE(), 0, 0,12,3, 12),
+((DATEADD(day,1,GETDATE())), 0, 0,12,3, 12),
+((DATEADD(day,1,GETDATE())), 0, 0,13,3, 13),
+((DATEADD(day,1,GETDATE())), 0, 0,13,3, 13),
+((DATEADD(day,1,GETDATE())), 0, 0,13,3, 13),
+((DATEADD(day,1,GETDATE())), 0, 0,14,3, 14),
+((DATEADD(day,1,GETDATE())), 0, 0,14,3, 14),
+((DATEADD(day,1,GETDATE())), 0, 0,15,3, 15),
+((DATEADD(day,1,GETDATE())), 0, 0,15,3, 15),
+((DATEADD(day,1,GETDATE())), 0, 0,15,3, 15),
+((DATEADD(day,1,GETDATE())), 0, 0,16,3, 16),
+((DATEADD(day,1,GETDATE())), 0, 0,16,3, 16),
+((DATEADD(day,1,GETDATE())), 0, 0,16,3, 16),
+((DATEADD(day,1,GETDATE())), 0, 0,17,3, 17),
+((DATEADD(day,1,GETDATE())), 0, 0,17,3, 17),
+((DATEADD(day,1,GETDATE())), 0, 0,17,3, 17),
+((DATEADD(day,1,GETDATE())), 0, 0,18,3, 18),
+((DATEADD(day,1,GETDATE())), 0, 0,18,3, 18),
+((DATEADD(day,1,GETDATE())), 0, 0,19,3, 19),
+((DATEADD(day,1,GETDATE())), 0, 0,19,3, 19),
+((DATEADD(day,1,GETDATE())), 0, 0,20,3, 20);
 
  -- ---------------------------------------------------------------
  --						 productoXOrden
@@ -775,11 +775,89 @@ INSERT INTO [Ferianueva].[dbo].[Transporte]
 VALUES 
 (10000);
 
+-- Semanas
+INSERT INTO [Ferianueva].[dbo].[Semanas]
+([Semanas].[inicioSemana],[Semanas].[finalSemana])
+VALUES 
+(GETDATE(),DATEADD(day,7,GETDATE()));
+
+
+
 -- rutas
 INSERT INTO [Ferianueva].[dbo].[Rutas]
 ([Fecha],[idTransporte],[idChofer])
 VALUES 
-(GETDATE(),1,5);
+(GETDATE(),1,5),
+(DATEADD(day,1,GETDATE()),1,5),
+(DATEADD(day,2,GETDATE()),1,5),
+(DATEADD(day,3,GETDATE()),1,5);
+
+-- SemanasXEntrega
+
+INSERT INTO [Ferianueva].[dbo].[SemanaXEntrega]
+([idRuta],[idSemana])
+VALUES 
+(2,1),
+(4,1);
+
+-- RutasXOrden
+
+INSERT INTO [Ferianueva].[dbo].[rutaXOrden]
+([idRuta],[ordenId],[ordenLlegada])
+VALUES 
+(2,1,1),
+(2,2,2),
+(2,3,3),
+(2,4,4),
+(2,5,5),
+(2,6,6),
+(2,7,7),
+(2,8,8),
+(2,9,9),
+(2,10,10),
+(2,11,11),
+(2,12,12),
+(2,13,13),
+(2,14,14),
+(2,15,15),
+(2,16,16),
+(2,17,17),
+(2,18,18),
+(2,19,19),
+(2,20,20),
+(2,21,21),
+(2,22,22),
+(2,23,23),
+(2,24,24),
+(2,25,25),
+(2,26,26),
+(2,27,27),
+(2,28,28),
+(2,29,29),
+(2,30,30),
+(4,31,1),
+(4,31,1),
+(4,32,2),
+(4,33,3),
+(4,34,4),
+(4,35,5),
+(4,36,6),
+(4,37,7),
+(4,38,8),
+(4,39,9),
+(4,40,10),
+(4,41,11),
+(4,42,12),
+(4,43,13),
+(4,44,14),
+(4,45,15),
+(4,46,16),
+(4,47,17),
+(4,48,18),
+(4,49,19),
+(4,50,20);
+
+
 
 -- rutasXPedido
 INSERT INTO [Ferianueva].[dbo].[rutaXPedido]
