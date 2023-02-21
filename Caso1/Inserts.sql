@@ -1138,6 +1138,7 @@ VALUES	(1,GETDATE()),
 (4,GETDATE()), 
 (5,GETDATE());
 
+select * from SemanaXRecogida
 INSERT INTO [Ferianueva].[dbo].[CausaXDevolucion] (idDevolucion, idCausa)
 VALUES (1,1), (2,4), (3,2),(3,5),(4,3), (4,5), (5,1);
 
