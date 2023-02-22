@@ -1,4 +1,4 @@
-
+/*
 GO
 -- Uso de este view para facilitar el procedimiento para ver el 20 %
 CREATE VIEW EntregasPorDias AS
@@ -16,7 +16,7 @@ AS
 BEGIN
     DECLARE @total1 INT, @total2 INT
     DECLARE @diferencia FLOAT
-	DECLARE @message varchar(50)
+	DECLARE @message varchar(50) =   = 'Hay una diferencia del'
 
 	-- obtenemos totales
 	SELECT @total1 = COUNT(r.idRuta)
@@ -35,7 +35,6 @@ BEGIN
         RETURN;
     END
 	BEGIN TRY 
-		    SET @message = 'Hay una diferencia del'
 			SET @diferencia = ABS(((CAST((@total1)AS FLOAT)*100)/Cast((@total2+@total1)As FLOAT))
 			- ((CAST((@total2)AS FLOAT)*100)/Cast((@total2+@total1)As FLOAT)))
 			SELECT @message AS mensaje, @diferencia AS diferencia
@@ -45,5 +44,26 @@ BEGIN
         RETURN;
 	END CATCH
 END;
-GO
+GO*/
+go
+CREATE VIEW EntregasPorDia AS
+SELECT r.idRuta, DATEPART(dw,r.Fecha) AS Dia, COUNT(rx.idRutaXEntrega) AS CantidadXRuta, sx.idSemana
+FROM Rutas r
+JOIN rutaXOrden rx ON r.idRuta = rx.idRuta
+JOIN SemanaXEntrega sx ON r.idRuta = sx.idRuta
+GROUP BY r.idRuta, DATEPART(dw,r.Fecha), sx.idSemana
+
+CREATE PROCEDURE CompararCargaTrabajo
+AS
+BEGIN
+    DECLARE @dia1 INT, @dia2 INT
+    DECLARE @cantidad1 INT, @cantidad2 INT
+    DECLARE @total1 INT, @total2 INT
+    DECLARE @diferencia FLOAT,@idRuta1 INT, @idRuta2 INT, @idSemana INT
+
+	SELECT @total1 = COUNT(*), from EntregasPorDia de
+	go
+select * from EntregasPorDia;
 EXEC CompararCargaTrabajo @idRuta1 = 2,@idRuta2=4,@idSemana= 1;
+
+
