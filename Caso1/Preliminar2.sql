@@ -47,7 +47,7 @@ END;
 GO*/
 go
 CREATE VIEW EntregasPorDia AS
-SELECT r.idRuta, DATEPART(dw,r.Fecha) AS Dia, COUNT(rx.idRutaXEntrega) AS CantidadXRuta, sx.idSemana
+SELECT r.idRuta, sx.dia AS Dia, COUNT(rx.idRutaXEntrega) AS CantidadXRuta, sx.idSemana
 FROM Rutas r
 JOIN rutaXOrden rx ON r.idRuta = rx.idRuta
 JOIN SemanaXEntrega sx ON r.idRuta = sx.idRuta
@@ -57,13 +57,13 @@ CREATE PROCEDURE CompararCargaTrabajo
 AS
 BEGIN
     DECLARE @dia1 INT, @dia2 INT
-    DECLARE @cantidad1 INT, @cantidad2 INT
     DECLARE @total1 INT, @total2 INT
-    DECLARE @diferencia FLOAT,@idRuta1 INT, @idRuta2 INT, @idSemana INT
+    DECLARE @diferencia FLOAT
 
-	SELECT @total1 = COUNT(*), from EntregasPorDia de
-	go
+	SELECT @total1 = , from EntregasPorDia de
+END;
 select * from EntregasPorDia;
 EXEC CompararCargaTrabajo @idRuta1 = 2,@idRuta2=4,@idSemana= 1;
 
-
+select * from Rutas
+SELECT * FROM Semanas

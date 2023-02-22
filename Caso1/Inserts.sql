@@ -795,10 +795,10 @@ VALUES
 -- SemanasXEntrega
 
 INSERT INTO [Ferianueva].[dbo].[SemanaXEntrega]
-([idRuta],[idSemana])
+([idRuta],[idSemana],[dia])
 VALUES 
-(2,1),
-(4,1);
+(2,1,1),
+(4,1,2);
 
 -- RutasXOrden
 
