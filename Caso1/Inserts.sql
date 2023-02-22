@@ -1132,13 +1132,51 @@ VALUES ('Producto equivocado'), ('Cantidad equivocada'), ('Mala atencion'), ('Pr
 
 INSERT INTO [Ferianueva].[dbo].[Devoluciones] 
 (facturaId, fechaDevolucion)
-VALUES	(1,GETDATE()),
-(2,GETDATE()), 
-(3,GETDATE()), 
-(4,GETDATE()), 
-(5,GETDATE());
+VALUES
+(1,DATEADD(DAY,3,GETDATE())),
+(2,DATEADD(DAY,3,GETDATE())), 
+(3,DATEADD(DAY,3,GETDATE())), 
+(4,DATEADD(DAY,3,GETDATE())), 
+(5,DATEADD(DAY,3,GETDATE()));
 
-select * from SemanaXRecogida
+
 INSERT INTO [Ferianueva].[dbo].[CausaXDevolucion] (idDevolucion, idCausa)
 VALUES (1,1), (2,4), (3,2),(3,5),(4,3), (4,5), (5,1);
 
+
+GO 
+ USE [Ferianueva]
+GO
+/****** Object:  StoredProcedure [dbo].[InsertarProductoXOrden]    Script Date: 15/2/2023 20:35:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[devolverProducto]
+    @idProducto int,
+    @idFactura int,
+	@idDevolucion int,
+    @cantidad float
+AS
+BEGIN
+	DECLARE @precVenta money = (SELECT Productos.precioVenta from Productos where Productos.idProducto = @idProducto)
+	declare @descontar money = (SELECT @precVenta*@cantidad)
+    SET NOCOUNT ON;
+    
+    -- Insertar datos en la tabla [ProductoXDevolucion]
+     INSERT INTO [Ferianueva].[dbo].[ProductoXDevolucion] 
+	(idProducto, idDevolucion, cantidad)
+	VALUES	(@idProducto, @idDevolucion, @cantidad)
+    
+    -- Actualizar el totalPrice y pesoTotal de la orden
+
+    UPDATE Facturas
+    SET total = (SELECT SUM(  Facturas.total - @descontar) FROM Facturas WHERE facturaId = @idFactura)     
+    WHERE facturaId = @idFactura;
+	exec UpdateInventariosCantidad @idProducto, @cantidad;
+END;
+GO
+
+ select * from ProductoXOrden;
+ select * from Facturas
+ exec devolverProducto @idProducto=1, @idFactura=1, @idDevolucion=1, @cantidad=10;
