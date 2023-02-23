@@ -1181,7 +1181,10 @@ GO
  exec devolverProducto @idProducto=11, @idFactura=4, @idDevolucion=4, @cantidad=2;
  exec devolverProducto @idProducto=1, @idFactura=5, @idDevolucion=5, @cantidad=2;
 
- SELECT  top 3 DevolucionCausas.descripcion, count(DevolucionCausas.idCausa) as CantCausa from DevolucionCausas
- inner join CausaXDevolucion on CausaXDevolucion.idCausa = DevolucionCausas.idCausa
- group by DevolucionCausas.descripcion
- order by CantCausa Desc
+
+
+
+ SELECT * FROM Inventarios
+ SELECT * FROM Productos
+ SELECT * FROM Ordenes
+ SELECT * FROM FACTURAS
