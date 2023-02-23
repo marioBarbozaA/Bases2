@@ -5,8 +5,11 @@ SELECT r.idRuta, sx.dia AS Dia, COUNT(rx.idRutaXEntrega) AS CantidadXRuta, sx.id
 FROM Rutas r
 INNER JOIN rutaXOrden rx ON r.idRuta = rx.idRuta
 INNER JOIN SemanaXEntrega sx ON r.idRuta = sx.idRuta
-GROUP BY r.idRuta,sx.dia, sx.idSemana
-go
+GROUP BY r.idRuta,sx.dia, sx.idSemana;
+
+GO
+
+--	este es para ver la diferencia del 20 % esto en procedure
 CREATE PROCEDURE CompararCargaTrabajo
 AS
 BEGIN
@@ -40,5 +43,30 @@ BEGIN
 	END CATCH
 END;
 
-GO
+GO	
+--	Correrlo por separado
 EXEC CompararCargaTrabajo;
+GO
+--	este es para ver la diferencia del 20 % es un query OJITOOOO CORRERLO POR SEPARADO
+SELECT 
+	SUM(CASE WHEN e.Dia = 1 THEN e.CantidadXRuta ELSE 0 END) AS total1,
+    SUM(CASE WHEN e.Dia = 2 THEN e.CantidadXRuta ELSE 0 END) AS total2,
+
+		ABS(((CAST(SUM(CASE WHEN e.Dia = 1 THEN e.CantidadXRuta ELSE 0 END)AS FLOAT)*100)
+		/
+		(CAST(SUM(CASE WHEN e.Dia = 2 THEN e.CantidadXRuta ELSE 0 END)
+		+
+		SUM(CASE WHEN e.Dia = 1 THEN e.CantidadXRuta ELSE 0 END) AS FLOAT)))
+		- 
+		((CAST(SUM(CASE WHEN e.Dia = 2 THEN e.CantidadXRuta ELSE 0 END) AS FLOAT)*100)
+		/
+		(CAST(SUM(CASE WHEN e.Dia = 2 THEN e.CantidadXRuta ELSE 0 END)
+		+
+		SUM(CASE WHEN e.Dia = 1 THEN e.CantidadXRuta ELSE 0 END)AS FLOAT)))) AS diferencia,
+		
+		CASE WHEN SUM(CASE WHEN e.Dia = 1 THEN e.CantidadXRuta ELSE 0 END)
+		>=
+		SUM(CASE WHEN e.Dia = 2 THEN e.CantidadXRuta ELSE 0 END) THEN 'día 1 tiene igual o más demanda' ELSE 'Día 2 tiene más demanda' END AS Demanda
+
+		FROM EntregasPorDia e 
+	
