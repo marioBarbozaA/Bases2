@@ -1129,19 +1129,18 @@ INSERT INTO [Ferianueva].[dbo].[DevolucionCausas]
 VALUES ('Producto equivocado'), ('Cantidad equivocada'), ('Mala atencion'), ('Producto en mal estado'),
 ('Producto triste');
 
-INSERT INTO [Ferianueva].[dbo].[Devoluciones] 
-(facturaId, fechaDevolucion)
-VALUES
-(1,DATEADD(DAY,3,GETDATE())),
-(2,DATEADD(DAY,3,GETDATE())), 
-(3,DATEADD(DAY,3,GETDATE())), 
-(4,DATEADD(DAY,3,GETDATE())), 
-(5,DATEADD(DAY,3,GETDATE()));
 
+INSERT INTO [Ferianueva].[dbo].[Devoluciones] 
+(facturaId, fechaDevolucion, Descripcion)
+VALUES
+(1,DATEADD(DAY,3,GETDATE()), 'Pedi chayote, no tomate, bobos'),
+(2,DATEADD(DAY,3,GETDATE()) ,'Se veían saliendo gusanos de los mangos'), 
+(3,DATEADD(DAY,3,GETDATE()), 'Yo para que quiero 3kg de fresas, si con 1 me hago las crepas, y seran tristes'), 
+(4,DATEADD(DAY,3,GETDATE()), 'A parte que el repartidor maldijo toda mi familia, me dan unas papas feas'), 
+(5,DATEADD(DAY,3,GETDATE()), 'Queria aguacate para el almuerzo, AGUACATE no estos tomates');
 
 INSERT INTO [Ferianueva].[dbo].[CausaXDevolucion] (idDevolucion, idCausa)
 VALUES (1,1), (2,4), (3,2),(3,5),(4,3), (4,5), (5,1);
-
 
 GO 
  USE [Ferianueva]
@@ -1175,15 +1174,14 @@ BEGIN
 	exec UpdateInventariosCantidad @idProducto, @cantidad;
 END;
 GO
-select * from Inventarios
-select * from ProductoXOrden;
- 
+
  exec devolverProducto @idProducto=1, @idFactura=1, @idDevolucion=1, @cantidad=10;
- 
+ exec devolverProducto @idProducto=7, @idFactura=2, @idDevolucion=2, @cantidad=1;
+ exec devolverProducto @idProducto=13, @idFactura=3, @idDevolucion=3, @cantidad=2;
+ exec devolverProducto @idProducto=11, @idFactura=4, @idDevolucion=4, @cantidad=2;
+ exec devolverProducto @idProducto=1, @idFactura=5, @idDevolucion=5, @cantidad=2;
 
  SELECT  top 3 DevolucionCausas.descripcion, count(DevolucionCausas.idCausa) as CantCausa from DevolucionCausas
  inner join CausaXDevolucion on CausaXDevolucion.idCausa = DevolucionCausas.idCausa
  group by DevolucionCausas.descripcion
  order by CantCausa Desc
-
- 
