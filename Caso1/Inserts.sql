@@ -1175,7 +1175,15 @@ BEGIN
 	exec UpdateInventariosCantidad @idProducto, @cantidad;
 END;
 GO
-
- select * from ProductoXOrden;
- select * from Facturas
+select * from Inventarios
+select * from ProductoXOrden;
+ 
  exec devolverProducto @idProducto=1, @idFactura=1, @idDevolucion=1, @cantidad=10;
+ 
+
+ SELECT  top 3 DevolucionCausas.descripcion, count(DevolucionCausas.idCausa) as CantCausa from DevolucionCausas
+ inner join CausaXDevolucion on CausaXDevolucion.idCausa = DevolucionCausas.idCausa
+ group by DevolucionCausas.descripcion
+ order by CantCausa Desc
+
+ 
