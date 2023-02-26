@@ -1217,8 +1217,3 @@ GO
 
 
 
-
- SELECT * FROM Inventarios
- SELECT * FROM Productos
- SELECT * FROM Ordenes
- SELECT * FROM FACTURAS
