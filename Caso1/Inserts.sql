@@ -89,7 +89,6 @@ insert into [Ferianueva].[dbo].[Clientes] (dbo.Clientes.nombre, dbo.Clientes.ape
  ('Kevin','Kent','Black'),
  ('Cheryl','Wyman','Mcfarland');
  
-
  
 
 -- ------------------------------------------------------------------------
@@ -139,6 +138,32 @@ VALUES
 (20, 39),
 (20, 40);
 
+-- ------------------------------------------------------------------------
+/*									UsuarioCliente					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[UsuariosClientes] 
+([contraseña],[creacion],[idCliente])
+VALUES 
+('Grace1','2020-07-02',1),
+('Tiny2','2020-03-06',2),
+('Evan3','2020-07-22',3),
+('Richard4','2020-12-12',4),
+('Lawrence5','2020-08-23',5),
+('Joan6','2019-04-08',6),
+('Jason7','2021-04-07',7),
+('David8','2019-11-15',8),
+('Christina9','2021-04-13',9),
+('Jeffrey10','2020-02-23',10),
+('Raymond11','2019-10-16',11),
+('Deangelo12','2019-01-16',12),
+('Terry13','2019-11-16',13),
+('Nina14','2019-09-25',14),
+('Ashley15','2020-02-28',15),
+('Joya16','2019-04-01',16),
+('Lorraine17','2020-03-29',17),
+('Joan18','2020-02-23',18),
+('Kevin19','2019-03-05',19),
+('Cheryl20','2020-09-15',20);
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
@@ -323,7 +348,7 @@ VALUES
 ('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 3);
  
  -- ------------------------------------------------------------------------
-/*									ContactInfoByClient					*/
+/*									ContactInfoByEmployee					*/
 -- ------------------------------------------------------------------------
 INSERT INTO [Ferianueva].[dbo].[contactoInfoXEmpleado] 
 ([idEmpleado],[idContacto])
@@ -334,6 +359,15 @@ VALUES
 (4,44),
 (5,45);
 
+
+INSERT INTO [Ferianueva].[dbo].[UsuariosEmpleados]
+([contraseña],[creacion],[idEmpleado])
+VALUES 
+('Juan1','2022-01-01',1),
+('Mar�a2','2022-02-01',2),
+('Pedro3','2022-03-01',3),
+('Ana4','2022-04-01',4),
+('Carlos5','2022-05-01',5);
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
 VALUES 
