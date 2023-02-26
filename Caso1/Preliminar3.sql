@@ -8,12 +8,14 @@ WAITFOR DELAY '00:00:05'
 
 ROLLBACK
 
+select * from productos;
 
 -- lost update 
 
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 begin transaction 
 update dbo.Productos set precioVenta=precioVenta-1  where idProducto=1
+WAITFOR DELAY '00:00:10'
 commit transaction
 
 select * from Productos
