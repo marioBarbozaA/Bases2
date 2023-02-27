@@ -282,7 +282,6 @@ values ('En proceso'), ('Por entregar'), ('Entregada')
  -- ---------------------------------------------------------------
  --						 orden
  -- ---------------------------------------------------------------
- 
 insert into Ferianueva.dbo.Ordenes (FeriaNueva.dbo.Ordenes.postime, FeriaNueva.dbo.Ordenes.totalPrice, 
 FeriaNueva.dbo.Ordenes.pesoTotal, FeriaNueva.dbo.Ordenes.clienteId, FeriaNueva.dbo.Ordenes.estadoOrdenId, 
 FeriaNueva.dbo.Ordenes.direccionId)
