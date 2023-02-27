@@ -109,3 +109,63 @@ where idProducto = 1
 --					parte 11		
 ------------------------------------------------
 
+-- decrypt the ContactoXCliente: desencripta la info con un password Que viene predeterminado a la hora de Encriptar
+
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create PROCEDURE [dbo].[decryptContactoXCliente]
+	@password varchar(50),
+	@idCliente int
+	AS
+	IF( @idCliente <= 0 or @idCliente > (SELECT COUNT(*) from Clientes)
+	or (Select COUNT(*) from contactoInfoXCliente where @idCliente = idCliente) <= 0)
+		begin
+			RAISERROR('No Existe el cliente', 16, 1);
+				RETURN; 
+		end
+	BEGIN
+    
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, cc.idCliente FROM ContactInfo c
+		INNER JOIN contactoInfoXCliente cc ON cc.idContactoInfo = c.contactInfoId
+		WHERE  @idCliente = idCliente
+	END;
+GO
+-- Ejecuta el código y va a observar que ya está desencriptado 
+
+EXEC decryptContactoXCliente @password = 'encriptacion', @idCliente = 1;
+
+-- decrypt the ContactoXEmpleado: desencripta la info con un password Que viene predeterminado a la hora de Encriptar
+CREATE PROCEDURE [dbo].[decryptContactoXEmpleado]
+	@password varchar(50),
+	@idEmpleado int
+	AS
+	IF( @idEmpleado <= 0 or @idEmpleado > (SELECT COUNT(*) from Empleados)
+	or (Select COUNT(*) from contactoInfoXEmpleado where @idEmpleado = idEmpleado) <= 0)
+		begin
+			RAISERROR('No Existe el Empleado', 16, 1);
+				RETURN; 
+		end
+	BEGIN
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, cc.idEmpleado FROM ContactInfo c
+		INNER JOIN contactoInfoXEmpleado cc ON cc.idContacto = c.contactInfoId
+		WHERE  @idEmpleado = cc.idEmpleado
+	END;
+GO
+-- Ejecuta el código y va a observar que ya está desencriptado 
+
+EXEC decryptContactoXEmpleado @password = 'encriptacion', @idEmpleado = 5;
+
+CREATE PROCEDURE [dbo].[decryptAll]
+	@password varchar(50)
+	AS
+	BEGIN
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, c.tipoId,c.contactInfoId FROM ContactInfo c
+		WHERE  borrado = 0
+	END;
+GO
+-- Ejecuta el código y va a observar que ya está desencriptado 
+
+Exec decryptAll @password = 'encriptacion';
+
+-- Este Metodo de Encriptación puede ser utilizado También para el PASSWORD del usuario 
