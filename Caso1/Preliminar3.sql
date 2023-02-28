@@ -6,10 +6,10 @@ SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 BEGIN TRANSACTION		
 
 update dbo.Productos SET precioVenta=10000 WHERE idProducto=4
-select * from Productos
+select * from Productos -- lee informacion a la que no se le ha hecho commit
 WAITFOR DELAY '00:00:05'
 
-ROLLBACK
+ROLLBACK --como se hace un roll back, el precio de venta no se actualiza
 
 select * from productos;
 --------------------------------------------------
@@ -110,11 +110,12 @@ where idProducto = 1
 ------------------------------------------------
 
 -- decrypt the ContactoXCliente: desencripta la info con un password Que viene predeterminado a la hora de Encriptar
+-- Correrlo por aparte los procedures
 
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-create PROCEDURE [dbo].[decryptContactoXCliente]
+CREATE PROCEDURE [dbo].[decryptContactoXCliente]
 	@password varchar(50),
 	@idCliente int
 	AS
@@ -154,7 +155,7 @@ CREATE PROCEDURE [dbo].[decryptContactoXEmpleado]
 GO
 -- Ejecuta el código y va a observar que ya está desencriptado 
 
-EXEC decryptContactoXEmpleado @password = 'encriptacion', @idEmpleado = 5;
+EXEC decryptContactoXEmpleado @password = 'encriptacion', @idEmpleado = 1;
 
 CREATE PROCEDURE [dbo].[decryptAll]
 	@password varchar(50)
@@ -169,3 +170,4 @@ GO
 Exec decryptAll @password = 'encriptacion';
 
 -- Este Metodo de Encriptación puede ser utilizado También para el PASSWORD del usuario 
+select * from ContactInfo
