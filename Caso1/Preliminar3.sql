@@ -158,33 +158,88 @@ SELECT * FROM ORDENES;
 --					parte 10		
 ------------------------------------------------
 
-select * from inventarios;
+create procedure [dbo].[spEjemplo1]
+as
+begin
+	begin transaction
+	update Inventarios
+	set Cantidad = Cantidad+1
+	where idProducto = 1
+	-----------------------
+	waitfor delay '00:00:05'
+	update Productos
+	set precioVenta = 1500
+	where idProducto=2
+	commit 
+end
+select * from Productos
+exec spEjemplo1;
+ ---------------------------------------------------------------------
+ -- por favor, como en la parte 9, lo siguiente se ejecuta en otra instancia de sql
+ -- sucederá que, al estar ambas instancias intentando actualizar los datos de ambas tablas, estarán esperandose entre ellas, lo que ejecutará un deadlock
+ create procedure spEjemplo2
+ as
+ begin
+	begin transaction 
+	update Productos
+	set precioVenta = 1500
+	where idProducto=2
+	-----------------------
+	waitfor delay '00:00:05'
+	update Inventarios
+	set Cantidad = Cantidad+1
+	where idProducto = 1
+	commit transaction
+end
 
+-- se deben crear los procedures
+-- Seguidamente se ejecuta en la primera instancia
+EXEC spEjemplo1;
+-- y en otra instancia se corre inmediatamente
+EXEC spEjemplo2;
+
+-- Solucion
+
+-- Para la solucion de este error, simplemente hacemos que se accese la informacion al mismo tiempo,
+-- significa que, cambiamos el orden de los updates de alguna de las 2 transacciones, en este caso
+-- a la transaccion 2, invertiremos su proceso para que sea parecida a la transaccion 1
+
+alter procedure spEjemplo1
+as
+begin
 begin transaction
 update Inventarios
 set Cantidad = Cantidad+1
 where idProducto = 1
-
 -----------------------
 waitfor delay '00:00:05'
 
 update Productos
 set precioVenta = 1500
 where idProducto=2
- ---------------------------------------------------------------------
- -- por favor, como en la parte 9, lo siguiente se ejecuta en otra instancia de sql
- -- sucederá que, al estar ambas instancias intentando actualizar los datos de ambas tablas, estarán esperandose entre ellas, lo que ejecutará un deadlock
+commit transaction
+end
+ ------------------------------------------------
+
+ alter procedure spEjemplo2
+ as
+ begin
  begin transaction 
-update Productos
-set precioVenta = 1500
-where idProducto=2
------------------------
-waitfor delay '00:00:05'
-
-update Inventarios
+ update Inventarios
 set Cantidad = Cantidad+1
 where idProducto = 1
+-----------------------
+waitfor delay '00:00:05'
+update Productos
+set precioVenta = 1500
+where idProducto=2
+commit transaction
+end
+-- luego de haber hecho los alter procedures, se hace en una instancia
+EXEC spEjemplo1;
 
+-- y luego en otra instancia se hace 
+EXEC spEjemplo2;
 ------------------------------------------------
 --					parte 11		
 ------------------------------------------------
