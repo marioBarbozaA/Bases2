@@ -11,59 +11,74 @@ VALUES
 -- ------------------------------------------------------------------------
 /*									ContactInfo     					*/
 -- ------------------------------------------------------------------------
-INSERT INTO [Ferianueva].[dbo].[ContactInfo] 
-([tipoId],[contacto])
-VALUES 
-(1,'80080268'),
-(2,'GraStarcher@gmail.com'),
-(1,'83365631'),
-(2, 'TinJones@gmail.com'),
-(1,'89956157'),
-(2,'EvaReichenbach@gmail.com'),
-(1,'82806739'),
-(2,'RicRush@gmail.com'),
-(1, '83714516'),
-(2, 'LawBernhart@gmail.com'),
-(1, '82688393'),
-(2, 'JoaGosselin@gmail.com'),
-(1, '81370699'),
-(2, 'JasHoag@gmail.com'),
-(1, '86617568'),
-(2, 'DavTung@gmail.com'),
-(1, '89874539'),
-(2, 'ChrSabino@gmail.com'),
-(1, '89874539'),
-(2, 'JefGuerrero@gmail.com'),
-(1, '82385652'),
-(2, 'RayFoust@gmail.com'),
-(1, '86830732'),
-(2, 'DeaConsidine@gmail.com'),
-(1, '89605250'),
-(2,  'TerArnold@gmail.com'),
-(1, '86079107'),
-(2,  'NinWesterman@gmail.com'),
-(1, '85371669'),
-(2, 'AshMckinley@gmail.com'),
-(1, '81029918'),
-(2, 'JoyHathaway@gmail.com'),
-(1, '85133678'),
-(2, 'LorBullock@gmail.com'),
-(1, '84914047'),
-(2,  'JoaJones@gmail.com'),
-(1, '89180931'),
-(2,  'KevKent@gmail.com'),
-(1, '85096644'),
-(2,  'CheWyman@gmail.com'),
-(1,'5551234'),
-(1, '5555678'),
-(1, '5559012'),
-(1, '5553456'),
-(1, '5557890'),
-(1,'55512341'),
-(1, '55556782'),
-(1, '55590123'),
-(1, '55534564'),
-(1, '55578905');
+-- encrypt the Contacto from the table ContactInfo
+-- Path: encryptContacto.sql
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[encryptContactos]
+@idTipo int,
+@contacto VARCHAR(50)
+AS
+	DECLARE @Codificado varbinary(100)
+	BEGIN
+	SET @Codificado = EncryptBYPASSPHRASE('encriptacion', @contacto);
+	INSERT INTO [Ferianueva].[dbo].[contactInfo] 
+	(tipoId,contacto)
+	VALUES 
+    (@idTipo,@Codificado)
+END
+GO
+EXEC encryptContactos @idTipo = 1, @contacto ='80080268';
+EXEC encryptContactos @idTipo = 2, @contacto ='GraStarcher@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='83365631';
+EXEC encryptContactos @idTipo = 2, @contacto ='TinJones@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='89956157';
+EXEC encryptContactos @idTipo = 2, @contacto ='EvaReichenbach@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='82806739';
+EXEC encryptContactos @idTipo = 2, @contacto ='RicRush@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='83714516';
+EXEC encryptContactos @idTipo = 2, @contacto ='LawBernhart@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='82688393';
+EXEC encryptContactos @idTipo = 2, @contacto ='JoaGosselin@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='81370699';
+EXEC encryptContactos @idTipo = 2, @contacto ='JasHoag@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='86617568';
+EXEC encryptContactos @idTipo = 2, @contacto ='DavTung@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='89874539';
+EXEC encryptContactos @idTipo = 2, @contacto ='ChrSabino@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='89874539';
+EXEC encryptContactos @idTipo = 2, @contacto ='JefGuerrero@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='82385652';
+EXEC encryptContactos @idTipo = 2, @contacto ='RayFoust@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='86830732';
+EXEC encryptContactos @idTipo = 2, @contacto ='DeaConsidine@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='89605250';
+EXEC encryptContactos @idTipo = 2, @contacto ='TerArnold@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='86079107';
+EXEC encryptContactos @idTipo = 2, @contacto ='NinWesterman@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='85371669';
+EXEC encryptContactos @idTipo = 2, @contacto ='AshMckinley@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='81029918';
+EXEC encryptContactos @idTipo = 2, @contacto ='JoyHathaway@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='85133678';
+EXEC encryptContactos @idTipo = 2, @contacto ='LorBullock@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='84914047';
+EXEC encryptContactos @idTipo = 2, @contacto ='JoaJones@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='89180931';
+EXEC encryptContactos @idTipo = 2, @contacto ='KevKent@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='85096644';
+EXEC encryptContactos @idTipo = 2, @contacto ='CheWyman@gmail.com';
+EXEC encryptContactos @idTipo = 1, @contacto ='5551234';
+EXEC encryptContactos @idTipo = 1, @contacto ='5555678';
+EXEC encryptContactos @idTipo = 1, @contacto ='5559012';
+EXEC encryptContactos @idTipo = 1, @contacto ='5553456';
+EXEC encryptContactos @idTipo = 1, @contacto ='5557890';
+EXEC encryptContactos @idTipo = 1, @contacto ='55512341';
+EXEC encryptContactos @idTipo = 1, @contacto ='55556782';
+EXEC encryptContactos @idTipo = 1, @contacto ='55590123';
+EXEC encryptContactos @idTipo = 1, @contacto ='55534564';
+EXEC encryptContactos @idTipo = 1, @contacto ='55578905';
 -- ------------------------------------------------------------------------
 /*									CLIENTES							*/
 -- ------------------------------------------------------------------------
@@ -88,8 +103,6 @@ insert into [Ferianueva].[dbo].[Clientes] (dbo.Clientes.nombre, dbo.Clientes.ape
  ('Joan','Jones','Madden'),
  ('Kevin','Kent','Black'),
  ('Cheryl','Wyman','Mcfarland');
- 
-
  
 
 -- ------------------------------------------------------------------------
@@ -139,6 +152,32 @@ VALUES
 (20, 39),
 (20, 40);
 
+-- ------------------------------------------------------------------------
+/*									UsuarioCliente					*/
+-- ------------------------------------------------------------------------
+INSERT INTO [Ferianueva].[dbo].[UsuariosClientes] 
+([contraseña],[creacion],[idCliente])
+VALUES 
+('Grace1','2020-07-02',1),
+('Tiny2','2020-03-06',2),
+('Evan3','2020-07-22',3),
+('Richard4','2020-12-12',4),
+('Lawrence5','2020-08-23',5),
+('Joan6','2019-04-08',6),
+('Jason7','2021-04-07',7),
+('David8','2019-11-15',8),
+('Christina9','2021-04-13',9),
+('Jeffrey10','2020-02-23',10),
+('Raymond11','2019-10-16',11),
+('Deangelo12','2019-01-16',12),
+('Terry13','2019-11-16',13),
+('Nina14','2019-09-25',14),
+('Ashley15','2020-02-28',15),
+('Joya16','2019-04-01',16),
+('Lorraine17','2020-03-29',17),
+('Joan18','2020-02-23',18),
+('Kevin19','2019-03-05',19),
+('Cheryl20','2020-09-15',20);
  -- ---------------------------------------------------------------
  -- Insert data into the Provincias
 INSERT INTO [Ferianueva].[dbo].[Provincias] 
@@ -322,7 +361,7 @@ VALUES
 ('Carlos', 'Jim�nez', 'D�az', '2022-05-01', 3);
  
  -- ------------------------------------------------------------------------
-/*									ContactInfoByClient					*/
+/*									ContactInfoByEmployee					*/
 -- ------------------------------------------------------------------------
 INSERT INTO [Ferianueva].[dbo].[contactoInfoXEmpleado] 
 ([idEmpleado],[idContacto])
@@ -333,6 +372,15 @@ VALUES
 (4,44),
 (5,45);
 
+
+INSERT INTO [Ferianueva].[dbo].[UsuariosEmpleados]
+([contraseña],[creacion],[idEmpleado])
+VALUES 
+('Juan1','2022-01-01',1),
+('Maria2','2022-02-01',2),
+('Pedro3','2022-03-01',3),
+('Ana4','2022-04-01',4),
+('Carlos5','2022-05-01',5);
  -- Insert data into the Unidades
 INSERT INTO [Ferianueva].[dbo].[Unidades] ([Nombre])
 VALUES 
@@ -365,30 +413,6 @@ VALUES
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
 USE [Ferianueva]
-GO
-/****** Object:  StoredProcedure [dbo].[InsertarProductoXOrden]    Script Date: 15/2/2023 20:35:06 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[InsertarProductoXOrden]
-    @idProducto int,
-    @idOrden int,
-    @cantidad float
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    -- Insertar datos en la tabla ProductoXOrden
-    INSERT INTO ProductoXOrden (idProducto, idOrden, cantidad, precio)
-    VALUES (@idProducto, @idOrden, @cantidad, (SELECT @cantidad * (select Productos.precioVenta from productos where Productos.idProducto = @idProducto)));
-    
-    -- Actualizar el totalPrice y pesoTotal de la orden
-    UPDATE Ordenes
-    SET totalPrice = (SELECT SUM(ProductoXOrden.precio) FROM ProductoXOrden WHERE idOrden = @idOrden),
-        pesoTotal = (SELECT SUM(cantidad) FROM ProductoXOrden po INNER JOIN Productos p ON po.idProducto = p.idProducto WHERE idOrden = @idOrden)
-    WHERE ordenId = @idOrden;
-END;
 GO
 -- ---------------------------------------------------------------------------
 -- ---------------------------------------------------------------------------
@@ -942,88 +966,6 @@ go
 -- --------------------------------------------------------------------------
 -- --------------------------------------------------------------------------
 go
- CREATE PROCEDURE sp_InsertarRestauracionXInventario 
-    @idInventario INT, 
-    @idRestauracion INT, 
-    @idRegistrador INT
-AS
-BEGIN
-    SET NOCOUNT ON;
-    
-    -- Declarar variables locales
-    DECLARE @idProductoRestauracion INT;
-    DECLARE @idProductoInventario INT;
-  DECLARE @totalRestauracion INT = (SELECT COUNT(*) FROM Restauraciones);
-  DECLARE @totalInventario INT = (SELECT COUNT(*) FROM Inventarios);
-    DECLARE @pesoRestauracion FLOAT;
-    DECLARE @nuevaExpiracionRestauracion DATE;
-    DECLARE @pesoDesechadoRestauracion FLOAT;
-    DECLARE @pesoInventario FLOAT;
-    DECLARE @nuevaExpiracionInventario DATE;
-  DECLARE @InicieTransaccion BIT;
-    DECLARE @idTipoAccion INT = 1; -- Actualizar inventario
-    
-    -- Validar que el producto de la restauración sea el mismo que el del inventario
-    SELECT @idProductoRestauracion = L.idProducto, 
-           @pesoRestauracion = L.peso,
-           @nuevaExpiracionRestauracion = R.NuevaExpiracion,
-           @pesoDesechadoRestauracion = R.PesoDesechado
-    FROM Restauraciones R
-    INNER JOIN Lotes L ON L.idLote = R.idLote
-    WHERE R.idRestauracion = @idRestauracion;
-
-    SELECT @idProductoInventario = idProducto, 
-           @pesoInventario = Cantidad,
-           @nuevaExpiracionInventario = nuevaExpiracion
-    FROM Inventarios
-    WHERE idInventario = @idInventario;
-
-    IF @idProductoRestauracion <> @idProductoInventario
-    BEGIN
-    
-        RAISERROR('El producto de la restauración debe ser el mismo que el del inventario.', 16, 1);
-        RETURN;
-    END
-    IF ((@idRestauracion <= 0   OR  @idRestauracion > @totalRestauracion) 
-     OR  ( @idInventario <= 0 or @idInventario > @totalInventario))
-    BEGIN
-    
-        RAISERROR('Debe existir en la base el inventario o esa restauracion.', 16, 1);
-        RETURN;
-     END
-     
-    BEGIN TRY
-        BEGIN TRANSACTION;
-
-        -- Insertar datos en la tabla RestauracionXInventario
-        INSERT INTO RestauracionXInventario (idInventario, idRestauración, FechaUpdate)
-        VALUES (@idInventario, @idRestauracion, GETDATE());
-
-        -- Actualizar datos en la tabla Inventarios
-        UPDATE Inventarios 
-        SET Cantidad = @pesoInventario + @pesoRestauracion - @pesoDesechadoRestauracion,
-            nuevaExpiracion = @nuevaExpiracionRestauracion,
-            idTipoAccion = @idTipoAccion
-        WHERE idInventario = @idInventario 
-              AND idProducto = @idProductoRestauracion;
-
-        -- Verificar que el restaurador sea bodeguero 1
-        IF NOT EXISTS (SELECT * FROM Empleados WHERE idEmpleado = @idRegistrador AND tipoEmpleado = 1)
-        BEGIN
-            RAISERROR('El Bodeguero debe existir.', 16, 1);
-            ROLLBACK TRANSACTION;
-            RETURN;
-        END
-
-        COMMIT TRANSACTION;
-
-    END TRY
-    BEGIN CATCH
-        ROLLBACK TRANSACTION;
-        THROW;
-    END CATCH
-END
-GO
  -- ---------------------------------------------------------------------------
 --								TipoACCION
 -- ---------------------------------------------------------------------------
@@ -1071,57 +1013,6 @@ EXEC sp_InsertarRestauracionXInventario @idInventario=14, @idRestauracion=14, @i
 EXEC sp_InsertarRestauracionXInventario @idInventario=15, @idRestauracion=15, @idRegistrador=1;
 
 go
-CREATE PROCEDURE [dbo].[UpdateInventariosCantidad]
-    @idProducto int,
-    @cantidad float
-AS
-BEGIN
-    SET NOCOUNT ON;
-
-    DECLARE @err int;
-    DECLARE @tranStarted bit;
-	DECLARE @postTotal float;
-	IF NOT (@idProducto>0 and (select count(*) from Productos where Productos.idProducto = @idProducto) = 1)
-		begin
-			RAISERROR('El producto especificado no existe', 16, 1);
-			RETURN;
-		end
-	SET @postTotal = (select sum(@cantidad+Inventarios.Cantidad) from Inventarios where Inventarios.idProducto = @idProducto);
-	IF NOT ((SELECT (SELECT Inventarios.Cantidad from Inventarios where Inventarios.idProducto = @idProducto)-@cantidad) >= 0)
-		BEGIN
-			RAISERROR('No hay suficiente stock para el pedido', 16, 1);
-			RETURN;
-		END
-    SET @tranStarted = 0;
-    BEGIN TRY
-        IF @@TRANCOUNT = 0
-        BEGIN
-            SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
-            BEGIN TRANSACTION;
-				UPDATE [dbo].[Inventarios]
-				SET [Cantidad] = @postTotal
-				WHERE [Inventarios].[idProducto] = @idProducto
-				SET @tranStarted = 1;
-			END
-        IF @tranStarted = 1
-        BEGIN
-            COMMIT TRANSACTION;
-        END
-    END TRY
-    BEGIN CATCH
-        SET @err = @@ERROR;
-
-        IF @tranStarted = 1
-        BEGIN
-            ROLLBACK TRANSACTION;
-        END
-
-        RAISERROR('Error updating Inventarios: %d', 16, 1, @err);
-    END CATCH
-END
-go
-
-
 
 INSERT INTO [Ferianueva].[dbo].[DevolucionCausas] 
 ([descripcion])
@@ -1149,30 +1040,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-create PROCEDURE [dbo].[devolverProducto]
-    @idProducto int,
-    @idFactura int,
-	@idDevolucion int,
-    @cantidad float
-AS
-BEGIN
-	DECLARE @precVenta money = (SELECT Productos.precioVenta from Productos where Productos.idProducto = @idProducto)
-	declare @descontar money = (SELECT @precVenta*@cantidad)
-    SET NOCOUNT ON;
-    
-    -- Insertar datos en la tabla [ProductoXDevolucion]
-     INSERT INTO [Ferianueva].[dbo].[ProductoXDevolucion] 
-	(idProducto, idDevolucion, cantidad)
-	VALUES	(@idProducto, @idDevolucion, @cantidad)
-    
-    -- Actualizar el totalPrice y pesoTotal de la orden
-
-    UPDATE Facturas
-    SET total = (SELECT SUM(  Facturas.total - @descontar) FROM Facturas WHERE facturaId = @idFactura)     
-    WHERE facturaId = @idFactura;
-	exec UpdateInventariosCantidad @idProducto, @cantidad;
-END;
-GO
 
  exec devolverProducto @idProducto=1, @idFactura=1, @idDevolucion=1, @cantidad=10;
  exec devolverProducto @idProducto=7, @idFactura=2, @idDevolucion=2, @cantidad=1;
@@ -1182,8 +1049,3 @@ GO
 
 
 
-
- SELECT * FROM Inventarios
- SELECT * FROM Productos
- SELECT * FROM Ordenes
- SELECT * FROM FACTURAS

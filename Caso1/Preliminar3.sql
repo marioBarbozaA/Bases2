@@ -4,13 +4,14 @@
 -- generacion del error
 -- Dirty read
 
+-- ejectuta la transaccion de aquÃ­ hasta el select y rapidamente en la segunda ventana corre las otras 2 lineas de cÃ³digo
 BEGIN TRANSACTION		
 update dbo.Productos SET precioVenta=10000 WHERE idProducto=4
 WAITFOR DELAY '00:00:05'
 ROLLBACK --se cancela 
 select * from productos WHERE idProducto=4; --demuestra como no se actualizo
 
--- Ejecucion en 2da instancia (forma instantanea)
+-- Ejecucion en 2da instancia (forma instantanea) Abre otra vetana de sql server y copia y pega las siguientes 2 lineas
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 select * from productos WHERE idProducto=4; --ejecucion del dirty read
 
@@ -42,9 +43,10 @@ WAITFOR DELAY '00:00:10'
 set @precioActu = @precioActu-1
 update dbo.Productos set precioVenta=@precioActu where idProducto=1
 commit transaction
+SELECT * FROM Productos WHERE idProducto = 1
 
--- Ahora ejecutar este codigo en una pestaña diferente inmediatamente
--- no se puede correr todo en un mismo script
+-- Ahora ejecutar este codigo en una pestaï¿½a diferente inmediatamente
+-- no se puede correr todo en un mismo script Se ejectuta en la segunda instancia 
 
 begin transaction 
 declare @precioActu money
@@ -52,9 +54,10 @@ select @precioActu = Productos.precioVenta from Productos where idProducto=1
 set @precioActu =  @precioActu-2
 update dbo.Productos set precioVenta=@precioActu where idProducto=1
 commit transaction
+SELECT * FROM Productos WHERE idProducto = 1
 
 -- solucion
-SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- hará que la siguiente transaccion que se haga caiga en un deadlocked
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ -- harï¿½ que la siguiente transaccion que se haga caiga en un deadlocked
 begin transaction 
 declare @precioActu money
 select @precioActu = Productos.precioVenta from Productos where idProducto=1
@@ -62,8 +65,9 @@ WAITFOR DELAY '00:00:10'
 set @precioActu = @precioActu-1
 update dbo.Productos set precioVenta=@precioActu where idProducto=1
 commit transaction
+SELECT * FROM Productos WHERE idProducto = 1
 
--- Ahora ejecutar este codigo en una pestaña diferente inmediatamente
+-- Ahora ejecutar este codigo en una pestaï¿½a diferente inmediatamente
 -- no se puede correr todo en un mismo script
 SET TRANSACTION ISOLATION LEVEL REPEATABLE READ
 begin transaction 
@@ -72,7 +76,7 @@ select @precioActu = Productos.precioVenta from Productos where idProducto=1
 set @precioActu =  @precioActu-2
 update dbo.Productos  set precioVenta=@precioActu where idProducto=1
 commit transaction
-
+SELECT * FROM Productos WHERE idProducto = 1
 
 -----------------------------------------------------
 -- phantoms
@@ -96,7 +100,7 @@ waitfor delay '00:00:10'
 select @abono=SUM(totalprice)/@cantidadPagos from dbo.Ordenes where clienteId=@clienteID
 group by clienteId
 
-select  @monto, @abono
+select  @monto AS Deuda, @abono AS Abono
 
 select * from dbo.Ordenes where clienteId = 14
 commit transaction
@@ -157,7 +161,7 @@ SELECT * FROM ORDENES;
 ------------------------------------------------
 --					parte 10		
 ------------------------------------------------
-
+-- Ejecutar procedure por aparte 
 create procedure [dbo].[spEjemplo1]
 as
 begin
@@ -172,11 +176,9 @@ begin
 	where idProducto=2
 	commit 
 end
-select * from Productos
-exec spEjemplo1;
  ---------------------------------------------------------------------
  -- por favor, como en la parte 9, lo siguiente se ejecuta en otra instancia de sql
- -- sucederá que, al estar ambas instancias intentando actualizar los datos de ambas tablas, estarán esperandose entre ellas, lo que ejecutará un deadlock
+ -- sucederï¿½ que, al estar ambas instancias intentando actualizar los datos de ambas tablas, estarï¿½n esperandose entre ellas, lo que ejecutarï¿½ un deadlock
  create procedure spEjemplo2
  as
  begin
@@ -244,3 +246,65 @@ EXEC spEjemplo2;
 --					parte 11		
 ------------------------------------------------
 
+-- decrypt the ContactoXCliente: desencripta la info con un password Que viene predeterminado a la hora de Encriptar
+-- Correrlo por aparte los procedures
+
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[decryptContactoXCliente]
+	@password varchar(50),
+	@idCliente int
+	AS
+	IF( @idCliente <= 0 or @idCliente > (SELECT COUNT(*) from Clientes)
+	or (Select COUNT(*) from contactoInfoXCliente where @idCliente = idCliente) <= 0)
+		begin
+			RAISERROR('No Existe el cliente', 16, 1);
+				RETURN; 
+		end
+	BEGIN
+    
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, cc.idCliente FROM ContactInfo c
+		INNER JOIN contactoInfoXCliente cc ON cc.idContactoInfo = c.contactInfoId
+		WHERE  @idCliente = idCliente
+	END;
+GO
+-- Ejecuta el cï¿½digo y va a observar que ya estï¿½ desencriptado 
+
+EXEC decryptContactoXCliente @password = 'encriptacion', @idCliente = 1;
+
+-- decrypt the ContactoXEmpleado: desencripta la info con un password Que viene predeterminado a la hora de Encriptar
+CREATE PROCEDURE [dbo].[decryptContactoXEmpleado]
+	@password varchar(50),
+	@idEmpleado int
+	AS
+	IF( @idEmpleado <= 0 or @idEmpleado > (SELECT COUNT(*) from Empleados)
+	or (Select COUNT(*) from contactoInfoXEmpleado where @idEmpleado = idEmpleado) <= 0)
+		begin
+			RAISERROR('No Existe el Empleado', 16, 1);
+				RETURN; 
+		end
+	BEGIN
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, cc.idEmpleado FROM ContactInfo c
+		INNER JOIN contactoInfoXEmpleado cc ON cc.idContacto = c.contactInfoId
+		WHERE  @idEmpleado = cc.idEmpleado
+	END;
+GO
+-- Ejecuta el cï¿½digo y va a observar que ya estï¿½ desencriptado 
+
+EXEC decryptContactoXEmpleado @password = 'encriptacion', @idEmpleado = 1;
+
+CREATE PROCEDURE [dbo].[decryptAll]
+	@password varchar(50)
+	AS
+	BEGIN
+		SELECT CONVERT (varchar(50),DecryptBYPASSPHRASE(@password,Contacto)) as desencriptado, c.tipoId,c.contactInfoId FROM ContactInfo c
+		WHERE  borrado = 0
+	END;
+GO
+-- Ejecuta el cï¿½digo y va a observar que ya estï¿½ desencriptado 
+
+Exec decryptAll @password = 'encriptacion';
+
+-- Este Metodo de Encriptaciï¿½n puede ser utilizado Tambiï¿½n para el PASSWORD del usuario 
+select * from ContactInfo
