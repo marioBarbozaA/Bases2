@@ -18,7 +18,7 @@ SELECT * FROM(
 WHERE results.position<=10;
 
 -- RANK TOP 10 Aprobados sin empates
-
+GO
 SELECT * FROM(
 	SELECT DATEPART ( year , posttime ) AS 'year', 
 	CASE WHEN DATEPART ( quarter , posttime )<3 THEN 1
@@ -33,7 +33,7 @@ WHERE results.position<=10;
 
 -- Ejercicio #2: clasifque a los usuarios en quintilos basándose en los puntajes obtenidos en promedio de cada usuario dentro de un mismo nivel.
 -- Se espera que se creen quintilos para basic, medium y advance. Utilice solo los datos del 2022.
-
+GO
 SELECT *
 	FROM (
 
@@ -49,6 +49,7 @@ SELECT *
 	order by [level], userRank
 
 --EJERCICIO 3: determinar si los usuarios mayormente van subiendo de nivel en el tiempo conforme avanzan en los algoritmos de una misma dificultad o no.
+GO
 SELECT  B.username, B.level, Mejoro
 FROM (SELECT A.username,  A.level, A.Nota_Inicial, A.Nota_Final, 
        (CASE WHEN A.Nota_Inicial < A.Nota_Final THEN 1 ELSE 0 END) AS 'Mejoro'
@@ -62,7 +63,7 @@ GROUP BY B.username, B.level, Mejoro ORDER BY B.username, B.level DESC
 
 
 -- Ejercicio #4: determine el ranking de los top 3 puntajes obtenidos, sacando el ranking por complejidad de los ejercicios y por cada año
-
+GO
 SELECT *
 FROM (
   SELECT YEAR(posttime) AS year, [level], username, points,
@@ -80,6 +81,7 @@ Se quiere generar un pie chart porcentual basado en las duraciones de la resoluc
 el objetivo es visualizar solo 5 slides en el chart con su respectivo porcentaje y cantidades, 
 cada slide es el porcentaje de personas que en promedio han durado cierto rango de duración considerando basic, medium y advance. 
 Es importante al ver un slide del chart saber la cantidad de cada nivel que están en ese rango de duración.*/
+GO
 WITH duration_ranges AS (
   SELECT 
     CASE 
