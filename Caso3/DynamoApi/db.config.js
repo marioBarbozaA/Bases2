@@ -8,7 +8,7 @@ AWS.config.update({
 
 const db = new AWS.DynamoDB.DocumentClient()
 
-const Table = 'users'
+const Table = 'MainMenu'
 
 export {
     db,

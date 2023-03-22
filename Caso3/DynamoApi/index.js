@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import dotenv from 'dotenv'
 
-import user from './routes.js'
+import mainMenu from './routes.js'
 
 dotenv.config()
 
@@ -14,7 +14,7 @@ app.get("/", (req, res)=>{
     res.json({"Hi":"Hello World"})
 })
 
-app.use('/api', user)
+app.use('/api', mainMenu)
 
 const PORT = 8000
 

@@ -1,6 +1,6 @@
 import {db, Table} from './db.config.js'
 
-// Create or Update users
+// Create or Update
 const createOrUpdate = async (data = {}) =>{
     const params = {
         TableName: Table,
@@ -15,8 +15,8 @@ const createOrUpdate = async (data = {}) =>{
     }
 }
 
-// Read all users
-const readAllUsers = async()=>{
+// Read all
+const readAll = async()=>{
     const params = {
         TableName: Table
     }
@@ -31,8 +31,8 @@ const readAllUsers = async()=>{
 
 }
 
-// Read Users by ID
-const getUserById = async (value, key = 'id') => {
+// Read Main Menu by ID
+const getMainMenuById = async (value, key = 'id') => {
     const params = {
         TableName: Table,
         Key: {
@@ -47,8 +47,8 @@ const getUserById = async (value, key = 'id') => {
     }
 }
 
-// Delete User by ID
-const deleteUserById = async(value, key = 'id' ) => { 
+// Delete Main Menu by ID
+const deleteMainMenuById = async(value, key = 'id' ) => { 
     const params = {
         TableName: Table,
         Key: {
@@ -68,7 +68,7 @@ const deleteUserById = async(value, key = 'id' ) => {
 
 export {
     createOrUpdate,
-    readAllUsers,
-    getUserById,
-    deleteUserById
+    readAll,
+    getMainMenuById,
+    deleteMainMenuById
 }

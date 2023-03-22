@@ -1,11 +1,14 @@
 import express from 'express'
-import { createOrUpdate, deleteUserById, getUserById, readAllUsers } from './db.js'
+import { createOrUpdate,
+    readAll,
+    getMainMenuById,
+    deleteMainMenuById } from './db.js'
 
 const router = express.Router()
 
-// READ ALL Users
-router.get('/users', async(req, res) => {
-    const { success, data } = await readAllUsers()
+// READ ALL
+router.get('/mainMenu', async(req, res) => {
+    const { success, data } = await readAll()
 
     if(success){
         return res.json({success, data})
@@ -13,10 +16,10 @@ router.get('/users', async(req, res) => {
     return res.status(500).json({success:false, messsage: "Error"})
 })
 
-// Get User by ID
-router.get('/user/:id', async(req, res) => {
+// Get Main Menu by ID
+router.get('/mainMenu/:id', async(req, res) => {
     const { id } = req.params
-    const { success, data } = await getUserById(id)
+    const { success, data } = await getMainMenuById(id)
     console.log(data)
     if(success){
         return res.json({success, data})
@@ -26,8 +29,8 @@ router.get('/user/:id', async(req, res) => {
 })
 
 
-// Create User
-router.post('/user', async(req, res) => {
+// Create Main Menu
+router.post('/mainMenu', async(req, res) => {
     const { success, data } = await createOrUpdate(req.body)
 
     if(success){
@@ -38,13 +41,13 @@ router.post('/user', async(req, res) => {
 })
 
 
-// Update User by ID
-router.put('/user/:id', async(req, res) => {
-    const user = req.body
+// Update Main Menu by ID
+router.put('/mainMenu/:id', async(req, res) => {
+    const mainMenu = req.body
     const { id } = req.params
-    user.id = parseInt(id)
+    mainMenu.id = parseInt(id)
 
-    const { success, data } = await createOrUpdate(user)
+    const { success, data } = await createOrUpdate(mainMenu)
 
     if(success){
         return res.json({success, data})
@@ -54,10 +57,10 @@ router.put('/user/:id', async(req, res) => {
 })
 
 
-// Delete User by Id
-router.delete('/user/:id', async (req, res) => {
+// Delete Main Menu by Id
+router.delete('/mainMenu/:id', async (req, res) => {
     const { id } = req.params
-    const { success, data } = await deleteUserById(id)
+    const { success, data } = await deleteMainMenuById(id)
     if (success) {
       return res.json({ success, data })
     }
